@@ -114,18 +114,32 @@ export const Body = styled.tbody`
 `;
 
 export const HeadRow = styled.th`
-  ${Fonts};
-  height: 3rem;
-  letter-spacing: 0.0175rem;
-  text-transform: uppercase;
-  color: ${ ({theme})=>  theme.COLORS.white};
-  background-color: ${ ({theme})=>  theme.COLORS.primary};
+    ${Fonts};
+    height: 3rem;
+    letter-spacing: 0.0175rem;
+    text-transform: uppercase;
+    color: ${({theme}) => theme.COLORS.white};
+    background-color: ${({theme}) => theme.COLORS.primary};
 
-  &:last-child {
-    border-right: none;
-  }
+    position: relative;
 
-  ${cellControlledSizes}
+    &:last-child {
+        border-right: none;
+    }
+
+    ${cellControlledSizes};
+
+    & > .order {
+        position: absolute;
+        top: 50%;
+        right: 0;
+
+        transform: translate(-50%, -50%);
+
+        &:hover {
+            background: ${({theme}) => theme.COLORS.black};
+        }
+    }
 `;
 
 export const Row = styled.tr`
