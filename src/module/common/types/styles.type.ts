@@ -25,6 +25,7 @@ export interface IIcon extends IMargin {
 
 export interface IIconInput extends IIcon {
   onClick?: () => void;
+  onMouseDown?: any;
   type?: 'svg' | 'img' | string;
   className?: string;
 }

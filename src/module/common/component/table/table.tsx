@@ -3,6 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {useTheme} from 'styled-components';
 
 import arrowsDownUpIcon from '@/assets/icons/default/arrows-down-up.svg';
+import swipe from '@/assets/icons/default/swipe.svg';
 import {CheckBox, Icon, Pagination} from '@/module/common/component';
 import {usePortalPositioning} from '@/module/common/hooks';
 
@@ -18,6 +19,7 @@ export interface ITableProps<I extends Items> {
         data_key: string;
         className?: 'title' | 'id' | string;
         isOrder?: boolean;
+        isResizer?: boolean;
     }[];
     arrayBody: I;
     parseValue?: (
@@ -69,13 +71,44 @@ export const TableIndex = <I extends Items>({
         true
     );
 
+
+    const [columnWidths, setColumnWidths] = useState<{ [key: string]: number }>({
+        title: 240,
+        id: 80
+    });
+
+    const onResizerColumn = (e: MouseEvent, key: string) => {
+        e.preventDefault();
+        const startX = e.clientX;
+        const initialWidth = columnWidths[key] || 150;
+
+        const handleMouseMove = (event: MouseEvent) => {
+            const newWidth = initialWidth + (event.clientX - startX);
+            setColumnWidths((prevWidths) => ({
+                ...prevWidths,
+                [key]: Math.max(newWidth, 50),
+            }));
+        };
+
+        const handleMouseUp = () => {
+            document.removeEventListener("mousemove", handleMouseMove);
+            document.removeEventListener("mouseup", handleMouseUp);
+        };
+
+        document.addEventListener("mousemove", handleMouseMove);
+        document.addEventListener("mouseup", handleMouseUp);
+    };
+
     return (
         <Styled.Table className={className ?? ''}>
             <Styled.Head>
                 <Styled.Row>
                     {arrayHeader.map((v, i) => (
-                        <Styled.HeadRow className={v.className ?? 'title'} key={i}>
-                            {v.text}
+                        <Styled.HeadRow
+                            className={v.className ?? 'title'}
+                            key={i}
+                            style={{width: columnWidths[v.data_key] ?? columnWidths['title'] ?? "auto"}}
+                        >
                             {onOrderColumn && v?.isOrder && (
                                 <Icon
                                     icon={arrowsDownUpIcon}
@@ -86,6 +119,18 @@ export const TableIndex = <I extends Items>({
                                     onClick={onOrderColumn.bind(this, v.data_key)}
                                 />
                             )}
+                             {v.text}
+
+
+                            {
+                                v.isResizer && (
+                                    <Icon
+                                        icon={swipe}
+                                        onMouseDown={(e: MouseEvent) => onResizerColumn(e, v.data_key ?? 'title')}
+                                        className='resizer'
+                                    />
+                                )
+                            }
                         </Styled.HeadRow>
                     ))}
                     {select && select.isAllSelect ? (
@@ -136,6 +181,7 @@ export const TableIndex = <I extends Items>({
                                     return (
                                         <Styled.Data
                                             className={v?.className ?? 'title'}
+                                            style={{width: columnWidths[v.data_key] ?? columnWidths['title'] ?? "auto"}}
                                             key={key}
                                             onMouseEnter={onSetFocused}
                                             onMouseOut={() => setFocused(null)}

@@ -193,12 +193,12 @@ export const Example = () => {
                 tooltipLength={25}
                 linesToTruncate={3}
                 arrayHeader={[
-                    {text: 'Id', data_key: 'id', isOrder: true},
-                    {text: 'User', data_key: 'user'},
-                    {text: 'Email', data_key: 'email'},
+                    {text: 'Id', data_key: 'id', isOrder: true, className: 'id'},
+                    {text: 'User', data_key: 'user', isResizer: true},
+                    {text: 'Email', data_key: 'email', isResizer: true},
                     {text: 'Amount', data_key: 'amount'},
                     {text: 'Currency', data_key: 'currency'},
-                    {text: 'Date', data_key: 'createdAt'}
+                    {text: 'Date', data_key: 'createdAt'},
                 ]}
                 arrayBody={dataTable ?? []}
                 parseValue={(value, key) => {

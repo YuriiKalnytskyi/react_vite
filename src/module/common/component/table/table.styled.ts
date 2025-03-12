@@ -12,17 +12,18 @@ const layoutCss = css`
 `;
 
 const cellControlledSizes = css`
-  padding: ${FONTS.SIZES.xxsm} ${FONTS.SIZES.l};
-
-  &.title {
-    width: 100% !important;
-    //position: relative;
     padding: ${FONTS.SIZES.xxsm} ${FONTS.SIZES.l};
-  }
 
-  &.id {
-    width: clamp(3rem, 3rem, 3rem) !important;
-  }
+    &.title {
+        width: 13rem ;
+        min-width:  13rem;
+    }
+
+    &.id {
+        width: 5rem ;
+        min-width:  5rem;
+
+    }
 `;
 
 // ================= table components START ====================//
@@ -45,7 +46,6 @@ export const Container = styled.div`
 
       & > thead > tr > th,
       & > tr > td {
-        width: clamp(3.125rem, 9.375rem, 25rem);
 
         white-space: nowrap;
         overflow: hidden;
@@ -132,9 +132,23 @@ export const HeadRow = styled.th`
     & > .order {
         position: absolute;
         top: 50%;
-        right: 0;
+        right: 1rem;
 
         transform: translate(-50%, -50%);
+
+        &:hover {
+            background: ${({theme}) => theme.COLORS.black};
+        }
+    }
+
+    & > .resizer {
+        position: absolute;
+        top: 50%;
+        right: 0;
+
+        transform: translate(0, -50%);
+
+        cursor: e-resize;
 
         &:hover {
             background: ${({theme}) => theme.COLORS.black};
@@ -244,4 +258,19 @@ export const Tooltip = styled.div`
         background-color: ${ ({theme})=>  theme.COLORS.primary};
         border-radius: 0.25rem;
     }
+`;
+
+
+export const Resizer = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  cursor: col-resize;
+  background-color: transparent;
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
 `;
