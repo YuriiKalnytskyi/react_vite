@@ -249,7 +249,6 @@ export const MatchedWords = <
             animate={focused ? 'open' : 'closed'}
             initial="closed"
             $focused={newItemFlag ? false : focused}
-            $newItemFlag={newItemFlag}
             {...props}
             ref={ref as RefObject<HTMLDivElement>}
         >
@@ -257,6 +256,7 @@ export const MatchedWords = <
                 <IconCommon
                     id="addOrCloseIcon"
                     icon={closeIcon}
+                    className={newItemFlag? 'active': ''}
                     onClick={(e) => {
                         e.stopPropagation();
                         if (typeof type.addNewItem === 'object' && type.addNewItem.onClick) {

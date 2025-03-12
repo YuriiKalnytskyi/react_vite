@@ -10,7 +10,6 @@ export interface IWProps extends IMargin {
   readOnly?: boolean;
   width?: string;
   $focused: boolean;
-  $newItemFlag: boolean;
 }
 export const Wrapper = styled(motion.div)<IWProps>`
     position: relative;
@@ -18,7 +17,7 @@ export const Wrapper = styled(motion.div)<IWProps>`
     cursor: pointer;
 }
 
-& > #addOrCloseIcon {
+#addOrCloseIcon {
     height: 1rem;
     cursor: pointer;
     position: absolute;
@@ -27,6 +26,10 @@ export const Wrapper = styled(motion.div)<IWProps>`
     z-index: 10;
     transition: transform 0.35s ease-out;
     transform: rotate(45deg);
+    
+    &.active {
+        transform: rotate(90deg) !important;
+    }
 }
 
 ${({$focused}) =>
@@ -43,16 +46,6 @@ ${({$focused}) =>
                     }
 
                 `};
-
-${({$newItemFlag}) =>
-        $newItemFlag && css`
-            & > #addOrCloseIcon {
-
-                transform: rotate(90deg);
-            }
-        `
-                };
-
 `;
 
 export const SuggestedBlock = styled(motion.ul)<{ $position?: string }>`
