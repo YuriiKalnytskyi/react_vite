@@ -12,7 +12,7 @@ export const Container = styled(TagCommon)`
 
 
 export const Sctol = styled(TagCommon)`
-    height: fit-content;
+    height: 150px;
     display: flex;
     gap: 20px;
     overflow-x: auto;

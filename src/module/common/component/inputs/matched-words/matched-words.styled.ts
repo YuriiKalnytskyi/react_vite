@@ -14,17 +14,28 @@ export interface IWProps extends IMargin {
 }
 export const Wrapper = styled(motion.div)<IWProps>`
     position: relative;
-    width: ${({ width }) => width ?? '100%'};
+    width: ${({width}) => width ?? '100%'};
     cursor: pointer;
 }
 
-${({ $focused }) =>
+& > #addOrCloseIcon {
+    height: 1rem;
+    cursor: pointer;
+    position: absolute;
+    right: 0.5rem;
+    top: 0.1rem;
+    z-index: 10;
+    transition: transform 0.35s ease-out;
+    transform: rotate(45deg);
+}
+
+${({$focused}) =>
         $focused
                 ? css`
                     #SuggestedBlock {
                         display: flex;
                     }
-            
+
                 `
                 : css`
                     #SuggestedBlock {
@@ -33,23 +44,15 @@ ${({ $focused }) =>
 
                 `};
 
-${({ $newItemFlag }) =>
-        $newItemFlag
-                ? css`
-                    #addOrCloseIcon {
-                        transform: rotate(90deg);
-                    }
+${({$newItemFlag}) =>
+        $newItemFlag && css`
+            & > #addOrCloseIcon {
 
-                    .endIcon {
-                        right: ${SPACES.m};
-                        transform: translate(0%, -50%) rotate(45deg);
-                    }
-                `
-                : css`
-                    #addOrCloseIcon {
-                        transform: rotate(45deg);
-                    }
-                `}
+                transform: rotate(90deg);
+            }
+        `
+                };
+
 `;
 
 export const SuggestedBlock = styled(motion.ul)<{ $position?: string }>`

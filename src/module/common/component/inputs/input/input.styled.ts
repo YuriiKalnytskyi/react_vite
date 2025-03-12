@@ -11,8 +11,8 @@ export interface IWProps extends IMargin {
 
 export const Wrapper = styled.div<IWProps>`
     position: relative;
-    width: ${({ width }) => width ?? '100%'};
-    opacity: ${({ readOnly }) => (readOnly ? '0.4' : '1')};
+    width: ${({width}) => width ?? '100%'};
+    opacity: ${({readOnly}) => (readOnly ? '0.4' : '1')};
 
     ${Margin};
 
@@ -32,9 +32,15 @@ export const Wrapper = styled.div<IWProps>`
     & .endIcon {
         right: ${SPACES.xs};
     }
+
     & .startIcon.rotate,
     & .endIcon.rotate {
-      transform: translate(0%, -50%) rotate(180deg)!important;
+        transform: translate(0%, -50%) rotate(180deg) !important;
+    }
+
+    & .startIcon.rotate45,
+    & .endIcon.rotate45 {
+        transform: translate(0%, -50%) rotate(225deg) !important;
     }
 `;
 
