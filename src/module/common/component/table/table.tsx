@@ -134,7 +134,7 @@ export const TableIndex = <I extends Items>({
                         </Styled.HeadRow>
                     ))}
                     {select && select.isAllSelect ? (
-                        <Styled.HeadRow className='id'>
+                        <Styled.HeadRow className='checkbox'>
                             <CheckBox
                                 name='selet'
                                 type='default'
@@ -224,7 +224,7 @@ export const TableIndex = <I extends Items>({
                                     );
                                 })}
                                 {select ? (
-                                    <Styled.Data className='id'>
+                                    <Styled.Data className='checkbox'>
                                         <CheckBox
                                             name='selet'
                                             type='default'

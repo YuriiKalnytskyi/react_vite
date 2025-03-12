@@ -31,7 +31,7 @@ export const TagCommon = styled.section.withConfig({
 
     ${({background}) => background && `background: ${background};`}
 
-    ${Border};
+     ${Border};
     ${Margin};
     ${Padding};
     ${Scroll};

@@ -23,6 +23,10 @@ const cellControlledSizes = css`
         width: 5rem ;
         min-width:  5rem;
 
+    } 
+    
+    &.checkbox {
+        width: 3.3rem ;
     }
 `;
 

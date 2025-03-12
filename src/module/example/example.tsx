@@ -191,7 +191,7 @@ export const Example = () => {
             <Table
                 className="scroll"
                 tooltipLength={25}
-                linesToTruncate={3}
+                linesToTruncate={2}
                 arrayHeader={[
                     {text: 'Id', data_key: 'id', isOrder: true, className: 'id'},
                     {text: 'User', data_key: 'user', isResizer: true},
@@ -435,14 +435,14 @@ export const Example = () => {
                         </Styled.Sctol>
 
                         DROPDOWN
-                        <TagCommon fd="row" ai="center" gap="2rem" margin="0 0 2rem 0">
+                        <TagCommon fd='row' ai='center' gap='2rem' margin='0 0 2rem 0'>
                             <DropDown
                                 isClick
                                 visibleBlock={({focused, onSetIsFocused}) => {
                                     return (
                                         <Input
-                                            name="phone"
-                                            label="Phone"
+                                            name='phone'
+                                            label='Phone'
                                             {...(getIn(values, 'phone')?.icon
                                                 ? {
                                                     startIcon: {
@@ -472,23 +472,28 @@ export const Example = () => {
                                     );
                                 }}
                                 popupBlock={({onSetIsFocused, ItemTag}) => {
-                                    return (data?.countries ?? []).filter((v) => {
-                                        const cleanInputPhone = (getIn(values, 'phone')?.phone || '').replace(/[\s+()]/g, '');
-                                        const cleanCountryPhone = v.phone.replace(/[\s+()]/g, '');
-                                        const phonePrefix = cleanInputPhone.slice(0, cleanCountryPhone.length);
-                                        return cleanCountryPhone.startsWith(phonePrefix);
-                                    }).map((country: any, i: any) => (
-                                        <ItemTag key={i}
-                                                 onClick={() => {
-                                                     setFieldValue('phone', {icon: country.icon, phone: country.phone});
-                                                     onSetIsFocused(false);
-                                                 }}
-                                        >
-                                            {country.icon && <Icon height="1rem" icon={country.icon} type="img"/>}
-                                            {country.name} {' '}
-                                            {country.phone}
-                                        </ItemTag>
-                                    ));
+                                    return (data?.countries ?? [])
+                                        .filter((v) => {
+                                            const cleanInputPhone = (getIn(values, 'phone')?.phone || '').replace(
+                                                /[\s+()]/g,
+                                                ''
+                                            );
+                                            const cleanCountryPhone = v.phone.replace(/[\s+()]/g, '');
+                                            const phonePrefix = cleanInputPhone.slice(0, cleanCountryPhone.length);
+                                            return cleanCountryPhone.startsWith(phonePrefix);
+                                        })
+                                        .map((country: any, i: any) => (
+                                            <ItemTag
+                                                key={i}
+                                                onClick={() => {
+                                                    setFieldValue('phone', {icon: country.icon, phone: country.phone});
+                                                    onSetIsFocused(false);
+                                                }}
+                                            >
+                                                {country.icon && <Icon height='1rem' icon={country.icon} type='img'/>}
+                                                {country.name} {country.phone}
+                                            </ItemTag>
+                                        ));
                                 }}
                             />
 
@@ -512,31 +517,35 @@ export const Example = () => {
                             ].map((item, index) => (
                                 <DropDown
                                     key={index}
-                                    position={item?.position as 'left' | 'right' ?? 'right'}
+                                    position={(item?.position as 'left' | 'right') ?? 'right'}
                                     isHover={item?.hover}
                                     isClick
                                     width={item?.width}
                                     visibleBlock={({focused}) => {
                                         return (
-                                            <div style={{
-                                                userSelect: 'none',
-                                                width: 'fit-content',
-                                                height: '2.5rem',
-                                                padding: '0 1rem',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                border: `1px solid transparent`,
-                                                borderColor: focused ? `${theme.COLORS.primary}` : 'transparent'
-                                            }}>
+                                            <div
+                                                style={{
+                                                    userSelect: 'none',
+                                                    width: 'fit-content',
+                                                    height: '2.5rem',
+                                                    padding: '0 1rem',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    border: `1px solid transparent`,
+                                                    borderColor: focused ? `${theme.COLORS.primary}` : 'transparent'
+                                                }}
+                                            >
                                                 {item.title}
                                             </div>
                                         );
                                     }}
                                     popupBlock={({onSetIsFocused, ItemTag}) => {
                                         return [1, 2, 3, 4, 5].map((itemPopup, i) => (
-                                            <ItemTag key={i}
-                                                     onClick={onSetIsFocused.bind(this, false)}> item {itemPopup}</ItemTag>
+                                            <ItemTag key={i} onClick={onSetIsFocused.bind(this, false)}>
+                                                {' '}
+                                                item {itemPopup}
+                                            </ItemTag>
                                         ));
                                     }}
                                 />
@@ -669,21 +678,29 @@ export const Example = () => {
             </PopupLayout>
 
 
-            <Accordion
-                visibleBlock="visibleBlock"
-                name="test1"
-                isAutoManyClose
-            >
-                d,cdlcldcdmckdcmkdcmkcdmkcdkcdk
-            </Accordion>
+            ACCORDEON
+            <TagCommon fd='row' gap={SPACES.xxxxxxl_}>
+                <Accordion
+                    visibleBlock="synchronized 1"
+                    name="synchronized"
+                >
+                    d,cdlcldcdmckdcmkdcmkcdmkcdkcdk
+                </Accordion>
 
-            <Accordion
-                name="test2"
-                isAutoManyClose
-                visibleBlock="dmcdcmkm"
-            >
-                d,cdlcldcdmckdcmkdcmkcdmkcdkcdk
-            </Accordion>
+                <Accordion
+                    name="synchronized"
+                    visibleBlock="synchronized 2"
+                >
+                    d,cdlcldcdmckdcmkdcmkcdmkcdkcdk
+                </Accordion>
+
+                <Accordion
+                    name="test2"
+                    visibleBlock="dmcdcmkm"
+                >
+                    d,cdlcldcdmckdcmkdcmkcdmkcdkcdk
+                </Accordion>
+            </TagCommon>
 
 
             DRAGANDDROP
@@ -709,35 +726,62 @@ export const Example = () => {
             />
 
 
-            {/*<CustomKanban />*/}
-
-            <TagCommon fd="row" gap="1rem" ai="baseline">
+            <TagCommon fd='row' gap='1rem' ai='baseline'>
                 <TagCommon>
-                    <TextCommon as="h1" size="xl">H1 size xl</TextCommon>
-                    <TextCommon as="h2" size="l">H2 size l</TextCommon>
-                    <TextCommon as="h3" size="m">H3 size m</TextCommon>
-                    <TextCommon as="h4" size="s">Hh size s</TextCommon>
-                    <TextCommon as="h5" size="xs">H5 size xs</TextCommon>
+                    <TextCommon as='h1' size='xl'>
+                        H1 size xl
+                    </TextCommon>
+                    <TextCommon as='h2' size='l'>
+                        H2 size l
+                    </TextCommon>
+                    <TextCommon as='h3' size='m'>
+                        H3 size m
+                    </TextCommon>
+                    <TextCommon as='h4' size='s'>
+                        Hh size s
+                    </TextCommon>
+                    <TextCommon as='h5' size='xs'>
+                        H5 size xs
+                    </TextCommon>
                 </TagCommon>
                 <TagCommon>
-                    <TextCommon as="p" size="xl">P size xl</TextCommon>
-                    <TextCommon as="p" size="l">P size l</TextCommon>
-                    <TextCommon as="p" size="m">P size m</TextCommon>
-                    <TextCommon as="p" size="s">P size s</TextCommon>
-                    <TextCommon as="p" size="xs">P size xs</TextCommon>
+                    <TextCommon as='p' size='xl'>
+                        P size xl
+                    </TextCommon>
+                    <TextCommon as='p' size='l'>
+                        P size l
+                    </TextCommon>
+                    <TextCommon as='p' size='m'>
+                        P size m
+                    </TextCommon>
+                    <TextCommon as='p' size='s'>
+                        P size s
+                    </TextCommon>
+                    <TextCommon as='p' size='xs'>
+                        P size xs
+                    </TextCommon>
                 </TagCommon>
                 <TagCommon>
-                    <TextCommon as="span" size="xl">SPAN size xl</TextCommon>
-                    <TextCommon as="span" size="l">SPAN size l</TextCommon>
-                    <TextCommon as="span" size="m">SPAN size m</TextCommon>
-                    <TextCommon as="span" size="s">SPAN size s</TextCommon>
-                    <TextCommon as="span" size="xs">SPAN size xs</TextCommon>
+                    <TextCommon as='span' size='xl'>
+                        SPAN size xl
+                    </TextCommon>
+                    <TextCommon as='span' size='l'>
+                        SPAN size l
+                    </TextCommon>
+                    <TextCommon as='span' size='m'>
+                        SPAN size m
+                    </TextCommon>
+                    <TextCommon as='span' size='s'>
+                        SPAN size s
+                    </TextCommon>
+                    <TextCommon as='span' size='xs'>
+                        SPAN size xs
+                    </TextCommon>
                 </TagCommon>
             </TagCommon>
-
-            <TagCommon fd="row" gap={SPACES.l} margin="3rem 0">
+            <TagCommon fd='row' gap={SPACES.l} margin='3rem 0'>
                 <Button
-                    content="toast loading"
+                    content='toast loading'
                     onClick={() => {
                         const _toast = toast.loading({title: 'Please wait...'});
 
@@ -748,28 +792,28 @@ export const Example = () => {
                             });
                         }, 1000);
                     }}
-
                 />
 
                 <Button
-                    content="toast success"
-                    onClick={() => toast.success({title: 'sdssddsdsddssdsdds', text: 'text text text text'})}
+                    content='toast success'
+                    onClick={() =>
+                        toast.success({title: 'sdssddsdsddssdsdds', text: 'text text text text'})
+                    }
                 />
                 <Button
-                    content="toast info"
+                    content='toast info'
                     onClick={() => toast.info({title: 'sdssddsdsddssdsdds', text: 'text text text text'})}
                 />
                 <Button
-                    content="toast error"
+                    content='toast error'
                     onClick={() => toast.error({title: 'sdssddsdsddssdsdds', text: 'text text text text'})}
                 />
 
                 <Button
-                    content="toast warn"
+                    content='toast warn'
                     onClick={() => toast.warn({title: 'sdssddsdsddssdsdds', text: 'text text text text'})}
                 />
             </TagCommon>
-
 
         </Styled.Container>
     );

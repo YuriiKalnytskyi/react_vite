@@ -72,7 +72,7 @@ const headingSizes = {
         line-height: 1.3;
     `,
     m: css`
-        font-size: 3.5rem;
+        font-size: 3rem;
         font-weight: ${FONTS.WEIGHTS.bold};
         line-height: 1.3;
     `,
