@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 import { Loading } from '@/module/common/component/loading';
-import { DivCommon, TitleCommon } from '@/module/common/styles';
+import { TagCommon, TextCommon } from '@/module/common/styles';
 import { FONTS } from '@/theme';
 
 import * as Styled from './drawer.layout.styled';
@@ -35,16 +35,16 @@ export const DrawerLayout = ({
       slidePosition={slidePosition}>
       <Styled.Container>
         {isLoading ? <Loading  /> : null}
-        <DivCommon fd="row" ai="center">
+        <TagCommon fd="row" ai="center">
           {typeof title === 'string' ? (
-            <TitleCommon fw={FONTS.WEIGHTS.semi_bold}>{title}</TitleCommon>
+            <TextCommon fw={FONTS.WEIGHTS.semi_bold}>{title}</TextCommon>
           ) : (
             <>
               {title}
             </>
           )}
           <Styled.CloseBtn onClick={onClose} />
-        </DivCommon>
+        </TagCommon>
 
         {children}
       </Styled.Container>

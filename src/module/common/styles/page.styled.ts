@@ -1,41 +1,51 @@
-import styled, { css } from 'styled-components';
+import styled, {css} from 'styled-components';
 
-import { Margin } from '@/module/common/styles/margin.styled.ts';
-import { IDivCommon, IIcon } from '@/module/common/types';
+import {Border, Margin, Padding} from '@/module/common/styles/margin.styled.ts';
+import {IIcon, ITagCommon} from '@/module/common/types';
+import {Scroll} from "@/module/common/styles/scroll.ts";
 
 export const Center = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
-export const DivCommon = styled.div.withConfig({
-    shouldForwardProp: (prop) => !['fd', 'jc', 'ai'].includes(prop),
-})<IDivCommon>`
-  width: ${({ width }) => width ?? '100%'};
-  max-width: ${({ maxWidth }) => maxWidth ?? '100%'};
-  height: ${({ height }) => height ?? 'fit-content'};
-  margin: ${({ margin }) => margin ?? '0'};
-  padding: ${({ padding }) => padding ?? '0'};
-  gap: ${({ gap }) => gap ?? '0'};
 
-  display: flex;
-  flex-direction: ${({ fd }) => fd ?? 'column'};
-  justify-content: ${({ jc }) => jc ?? 'stretch'};
-  align-items: ${({ ai }) => ai ?? 'stretch'};
+export const TagCommon = styled.section.withConfig({
+    shouldForwardProp: (prop) => !['fd', 'jc', 'ai', 'maxWidth', 'borderRadius'].includes(prop)
+})<ITagCommon>`
+    width: ${({width}) => width ?? '100%'};
+    height: ${({height}) => height ?? 'fit-content'};
 
-  position: relative;
+    ${({maxWidth}) => maxWidth && `max-width: ${maxWidth};`};
 
-  ${({ background }) => background && `background: ${background};`}
-  ${({ anyStyled }) => anyStyled}
+    ${({gap}) => gap && `gap: ${gap};`};
+
+    display: flex;
+    flex-direction: ${({fd}) => fd ?? 'column'};
+    ${({ai}) => ai && `align-items: ${ai};`};
+    ${({jc}) => jc && `justify-content: ${jc};`};
+    ${({fw}) => fw && `flex-wrap: ${fw};`};
+
+    position: relative;
+
+    ${({background}) => background && `background: ${background};`}
+
+    ${Border};
+    ${Margin};
+    ${Padding};
+    ${Scroll};
+
+    .full {
+        flex: 1;
+    }
 `;
-
 export const IconCommon = styled.div.withConfig({
     shouldForwardProp: (prop) => !['mt', 'mb', 'ml', 'mr'].includes(prop),
 })<IIcon>`
-    height: ${({ height }) => height ?? '1.25rem'};
+    height: ${({height}) => height ?? '1.25rem'};
 
-    ${({ width }) =>
+    ${({width}) =>
             width
                     ? css`
                         width: ${width ?? '1.25rem'};
@@ -44,12 +54,12 @@ export const IconCommon = styled.div.withConfig({
                         aspect-ratio: 1/1;
                     `}
 
-    background: ${({ background, theme }) => background ?? theme.COLORS.black};
+    background: ${({background, theme}) => background ?? theme.COLORS.black};
 
-    -webkit-mask-image: url(${({ icon }) => icon});
+    -webkit-mask-image: url(${({icon}) => icon});
     -webkit-mask-size: 100% 100%;
-    mask-image: url(${({ icon }) => icon});
-    cursor: ${({ cursor }) => cursor ?? 'text'};
+    mask-image: url(${({icon}) => icon});
+    cursor: ${({cursor}) => cursor ?? 'text'};
 
     ${Margin};
 `;

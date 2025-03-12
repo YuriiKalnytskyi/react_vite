@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { DivCommon } from '@/module/common/styles';
+import { TagCommon } from '@/module/common/styles';
 
-export const Container = styled(DivCommon)`
+export const Container = styled(TagCommon)`
     overflow-y: auto;
     overflow-x: hidden;
     padding-bottom: 20rem;
@@ -11,7 +11,7 @@ export const Container = styled(DivCommon)`
 `;
 
 
-export const Sctol = styled(DivCommon)`
+export const Sctol = styled(TagCommon)`
     height: fit-content;
     display: flex;
     gap: 20px;

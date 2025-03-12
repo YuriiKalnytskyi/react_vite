@@ -1,17 +1,28 @@
 import { css } from 'styled-components';
 
-import { IMargin, IPadding } from '@/module/common/types';
+import { IBorder, IMargin, IPadding } from '@/module/common/types';
 
 export const Margin = css<IMargin>`
-  margin-left: ${({ ml }) => ml ?? '0'};
-  margin-right: ${({ mr }) => mr ?? '0'};
-  margin-bottom: ${({ mb }) => mb ?? '0'};
-  margin-top: ${({ mt }) => mt ?? '0'};
+    ${({ mr }) => mr && `margin-right: ${mr};`};
+    ${({ mt }) => mt && `margin-top: ${mt};`};
+    ${({ mb }) => mb && `margin-bottom: ${mb};`};
+    ${({ ml }) => ml && `margin-left: ${ml};`};
+    ${({ margin }) => margin && `margin: ${margin};`};
+`;
+
+export const Border = css<IBorder>`
+    ${({ br }) => br && `border-left: ${br};`};
+    ${({ bt }) => bt && `border-top: ${bt};`};
+    ${({ bb }) => bb && `border-bottom: ${bb};`};
+    ${({ bl }) => bl && `border-left: ${bl};`};
+    ${({ border }) => border && `border: ${border};`}
+    ${({ borderRadius }) => borderRadius && `border-radius: ${borderRadius};`}
 `;
 
 export const Padding = css<IPadding>`
-  padding-left: ${({ pl }) => pl ?? '0'};
-  padding-right: ${({ pr }) => pr ?? '0'};
-  padding-bottom: ${({ pb }) => pb ?? '0'};
-  padding-top: ${({ pt }) => pt ?? '0'};
+  ${({ pr }) => pr && `padding-right: ${pr};`};
+  ${({ pt }) => pt && `padding-top: ${pt};`};
+  ${({ pb }) => pb && `padding-bottom: ${pb};`};
+  ${({ pl }) => pl && `padding-left: ${pl};`};
+  ${({ padding }) => padding && `padding: ${padding};`};
 `;

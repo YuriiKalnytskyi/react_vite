@@ -3,7 +3,7 @@ import { ChangeEvent, DragEvent, useCallback, useRef, useState } from 'react';
 
 import deleteIcon from '@/assets/icons/delete-file-icon.svg';
 import uploadIcon from '@/assets/icons/fileupload.svg';
-import { DivCommon, IconCommon, TitleCommon } from '@/module/common/styles';
+import { TagCommon, IconCommon, TextCommon } from '@/module/common/styles';
 
 import { fileService } from '../../services';
 import * as Styled from './upload-image.styled.ts';
@@ -101,14 +101,14 @@ export const UploadImage = ({ name, noFormikValue, readOnly }: IAvatarSetup) => 
         {value ? (
           <Styled.Avatar src={value.path ? value.path : value} alt='avatar' key={value} />
         ) : (
-          <DivCommon ai='center' jc='center' gap='1rem'>
+          <TagCommon ai='center' jc='center' gap='1rem'>
             <IconCommon height='3rem' icon={uploadIcon} cursor='pointer' className='upload-icon' />
-            <DivCommon fd='row' ai='center' jc='center' gap='0.375rem'>
-              <TitleCommon cursor='pointer' fs='0.9375rem' fw='400' color={COLORS.black}>
+            <TagCommon fd='row' ai='center' jc='center' gap='0.375rem'>
+              <TextCommon cursor='pointer' fs='0.9375rem' fw='400' color={COLORS.black}>
                 Image Add
-              </TitleCommon>
-            </DivCommon>
-          </DivCommon>
+              </TextCommon>
+            </TagCommon>
+          </TagCommon>
         )}
 
         <input

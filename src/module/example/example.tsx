@@ -18,7 +18,7 @@ import {
 } from '@/module/common/component';
 import {changeCard} from '@/module/common/hooks';
 import {onError} from '@/module/common/services';
-import {DivCommon, TitleCommon} from '@/module/common/styles';
+import {TagCommon, TextCommon} from '@/module/common/styles';
 import {validationSchemaExample} from '@/module/example/validation/shema.ts';
 import {SPACES} from '@/theme';
 import {dateTransform, functionStub} from '@/utils';
@@ -170,9 +170,9 @@ export const Example = () => {
             >
                 {themeStore === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
             </button>
-            <DivCommon gap={SPACES.l}>
+            <TagCommon gap={SPACES.l}>
                 BUTTON STATE
-                <DivCommon fd="row" gap={SPACES.l}>
+                <TagCommon fd="row" gap={SPACES.l}>
                     <Button
                         content="button"
                         variant="primary"
@@ -185,8 +185,8 @@ export const Example = () => {
                         to={APP_KEYS.ROUTER_KEYS.HOME}
                         content="navigation button "
                     />
-                </DivCommon>
-            </DivCommon>
+                </TagCommon>
+            </TagCommon>
 
             <Table
                 className="scroll"
@@ -253,8 +253,8 @@ export const Example = () => {
                 {({values, setFieldValue}) => (
                     <Form>
                         CHECKBOX STATE (default, multi, radio)
-                        <DivCommon fd="row" gap={SPACES.l} margin="0 0 2rem 0">
-                            <DivCommon height="100px" fd="row" ai="center" gap={SPACES.l}>
+                        <TagCommon fd="row" gap={SPACES.l} margin="0 0 2rem 0">
+                            <TagCommon height="100px" fd="row" ai="center" gap={SPACES.l}>
                                 <Inputs.CheckBox name="default" type="default" items="string"/>
                                 <CheckBox
                                     name="defaultObj"
@@ -262,41 +262,41 @@ export const Example = () => {
                                     items={{name: 'obj'}}
                                     visibleItem="name"
                                 />
-                            </DivCommon>
-                            <DivCommon height="100px" fd="row" ai="center" gap={SPACES.l}>
-                                <DivCommon width="fit-content" gap={SPACES.l}>
+                            </TagCommon>
+                            <TagCommon height="100px" fd="row" ai="center" gap={SPACES.l}>
+                                <TagCommon width="fit-content" gap={SPACES.l}>
                                     <CheckBox name="multi" type="multi" items={['string_1', 'string_2', 'string3']}/>
-                                </DivCommon>
-                                <DivCommon gap={SPACES.l}>
+                                </TagCommon>
+                                <TagCommon gap={SPACES.l}>
                                     <CheckBox
                                         name="multiObj"
                                         type="multi"
                                         items={[{name: 'obj_1'}, {name: 'obj_2'}, {name: 'obj_3'}]}
                                         visibleItem="name"
                                     />
-                                </DivCommon>
-                            </DivCommon>
-                            <DivCommon height="100px" fd="row" ai="center" gap={SPACES.l}>
-                                <DivCommon width="fit-content" gap={SPACES.l}>
+                                </TagCommon>
+                            </TagCommon>
+                            <TagCommon height="100px" fd="row" ai="center" gap={SPACES.l}>
+                                <TagCommon width="fit-content" gap={SPACES.l}>
                                     <CheckBox name="radio" type="radio" items={['string_1', 'string_2']}/>
-                                </DivCommon>
-                                <DivCommon gap={SPACES.l}>
+                                </TagCommon>
+                                <TagCommon gap={SPACES.l}>
                                     <CheckBox
                                         name="radioObj"
                                         type="radio"
                                         items={[{name: 'obj_1'}, {name: 'obj_2'}]}
                                         visibleItem="name"
                                     />
-                                </DivCommon>
-                            </DivCommon>
-                            <DivCommon height="100px" fd="row" ai="center" gap={SPACES.l}>
+                                </TagCommon>
+                            </TagCommon>
+                            <TagCommon height="100px" fd="row" ai="center" gap={SPACES.l}>
                                 <Inputs.Switch name="input-switch" label="Switch"/>
                                 <Switch name="switch" label="Switch"/>
-                            </DivCommon>
-                        </DivCommon>
+                            </TagCommon>
+                        </TagCommon>
 
                         INPUT CARD
-                        <DivCommon fd="row" gap={SPACES.l} margin="0 0 2rem 0">
+                        <TagCommon fd="row" gap={SPACES.l} margin="0 0 2rem 0">
                             <Inputs
                                 width="15rem"
                                 name="card"
@@ -330,9 +330,9 @@ export const Example = () => {
                                     setFieldValue(name, _value);
                                 }}
                             />
-                        </DivCommon>
+                        </TagCommon>
                         INPUT STATE (default, readOnly, email, password)
-                        <DivCommon fd="row" gap={SPACES.l} margin="0 0 2rem 0">
+                        <TagCommon fd="row" gap={SPACES.l} margin="0 0 2rem 0">
                             <Input name="first_name" label="First Name" isSpellCheck/>
                             <Input
                                 name="last_name"
@@ -352,7 +352,7 @@ export const Example = () => {
                                 endIcon={{icon: testIcon, height: '1.5rem', type: 'img'}}
                             />
                             <Input name="password" label="Password" type="password"/>
-                        </DivCommon>
+                        </TagCommon>
                         INPUTMATCHEDWORDS
                         <Styled.Sctol fd="row" gap={SPACES.l} ai="flex-end" margin="0 0 2rem 0">
                             <Inputs.MatchedWords
@@ -386,10 +386,10 @@ export const Example = () => {
                                 visibleItem="name"
                                 parseValue={(value, valueObj) => {
                                     return (
-                                        <DivCommon fd="row" gap={SPACES.l}>
+                                        <TagCommon fd="row" gap={SPACES.l}>
                                             <Icon icon={valueObj.icon} type="img"/>
                                             {value}
-                                        </DivCommon>
+                                        </TagCommon>
                                     );
                                 }}
                                 filterOption={{
@@ -407,10 +407,10 @@ export const Example = () => {
                                 visibleItem="name"
                                 parseValue={(value, valueObj) => {
                                     return (
-                                        <DivCommon fd="row" gap={SPACES.l}>
+                                        <TagCommon fd="row" gap={SPACES.l}>
                                             {valueObj.icon && <Icon height="1rem" icon={valueObj.icon} type="img"/>}
                                             {value}
-                                        </DivCommon>
+                                        </TagCommon>
                                     );
                                 }}
                                 filterOption={{
@@ -423,10 +423,10 @@ export const Example = () => {
                                     mode: 'multi',
                                     parseValue: (value, valueObj) => {
                                         return (
-                                            <DivCommon fd="row" ai="center" gap={SPACES.l}>
+                                            <TagCommon fd="row" ai="center" gap={SPACES.l}>
                                                 {valueObj.icon && <Icon height="1rem" icon={valueObj.icon} type="img"/>}
                                                 {value}
-                                            </DivCommon>
+                                            </TagCommon>
                                         );
                                     },
                                     addNewItem: true
@@ -435,7 +435,7 @@ export const Example = () => {
                         </Styled.Sctol>
 
                         DROPDOWN
-                        <DivCommon fd="row" ai="center" gap="2rem" margin="0 0 2rem 0">
+                        <TagCommon fd="row" ai="center" gap="2rem" margin="0 0 2rem 0">
                             <DropDown
                                 isClick
                                 visibleBlock={({focused, onSetIsFocused}) => {
@@ -541,11 +541,11 @@ export const Example = () => {
                                     }}
                                 />
                             ))}
-                        </DivCommon>
+                        </TagCommon>
 
 
                         CALENDAR
-                        <DivCommon fd="row" gap={SPACES.l} ai="flex-end" margin="0 0 2rem 0">
+                        <TagCommon fd="row" gap={SPACES.l} ai="flex-end" margin="0 0 2rem 0">
                             <Inputs.Calendar
                                 label="Calendar (Date)"
                                 name="calendar_single"
@@ -571,10 +571,10 @@ export const Example = () => {
                                 name="calendar_multiple"
                                 mode="multiple"
                             />
-                        </DivCommon>
+                        </TagCommon>
 
                         TEXTAREA
-                        <DivCommon gap={SPACES.l} ai="flex-end" margin="0 0 2rem 0">
+                        <TagCommon gap={SPACES.l} ai="flex-end" margin="0 0 2rem 0">
                             <Inputs.TextArea
                                 name="text_area"
                                 rows={3}
@@ -582,7 +582,7 @@ export const Example = () => {
                                 resizable={false}
                                 maxLength={300}
                             />
-                        </DivCommon>
+                        </TagCommon>
 
                         <TextArea
                             name="resizable"
@@ -593,17 +593,17 @@ export const Example = () => {
 
 
                         DRAWER
-                        <DivCommon fd="row" gap="2rem" margin="0 0 2rem 0">
+                        <TagCommon fd="row" gap="2rem" margin="0 0 2rem 0">
                             <Button content="left" variant="primary" onClick={onToggle.bind(this, 'left', 'left')}/>
                             <Button content="right" variant="primary" onClick={onToggle.bind(this, 'right', 'right')}/>
                             <Button content="top" variant="primary" onClick={onToggle.bind(this, 'top', 'left')}/>
                             <Button content="bottom" variant="primary"
                                     onClick={onToggle.bind(this, 'bottom', 'right')}/>
 
-                        </DivCommon>
+                        </TagCommon>
 
                         POPUP FULLSCREEN
-                        <DivCommon fd="row" gap="2rem" margin="0 0 2rem 0">
+                        <TagCommon fd="row" gap="2rem" margin="0 0 2rem 0">
                             <Button content="top" variant="primary"
                                     onClick={onTogglePopup.bind(this, 'top', 'center')}/>
                             <Button content="bottom" variant="primary"
@@ -614,15 +614,15 @@ export const Example = () => {
                                     onClick={onTogglePopup.bind(this, 'right', 'center')}/>
                             <Button content="center" variant="primary"
                                     onClick={onTogglePopup.bind(this, 'center', 'center')}/>
-                        </DivCommon>
+                        </TagCommon>
 
                         POPUP MOBILE
-                        <DivCommon fd="row" gap="2rem" margin="0 0 2rem 0">
+                        <TagCommon fd="row" gap="2rem" margin="0 0 2rem 0">
                             <Button content="top" variant="primary"
                                     onClick={onTogglePopup.bind(this, 'top', 'top')}/>
                             <Button content="bottom" variant="primary"
                                     onClick={onTogglePopup.bind(this, 'bottom', 'bottom')}/>
-                        </DivCommon>
+                        </TagCommon>
 
 
                         <File
@@ -641,9 +641,9 @@ export const Example = () => {
                           contentPosition={contentPositionDrawer}
                           onClose={onToggle.bind(this, null, null)}
             >
-                <DivCommon margin="3rem 0">
+                <TagCommon margin="3rem 0">
                     POPUP BUTTON
-                    <DivCommon gap="3rem" margin="0 0 3rem 0">
+                    <TagCommon gap="3rem" margin="0 0 3rem 0">
                         <Button content="top" variant="primary"
                                 onClick={onTogglePopup.bind(this, 'top', 'center')}/>
                         <Button content="bottom" variant="primary"
@@ -654,8 +654,8 @@ export const Example = () => {
                                 onClick={onTogglePopup.bind(this, 'right', 'center')}/>
                         <Button content="center" variant="primary"
                                 onClick={onTogglePopup.bind(this, 'center', 'center')}/>
-                    </DivCommon>
-                </DivCommon>
+                    </TagCommon>
+                </TagCommon>
 
             </DrawerLayout>
 
@@ -711,31 +711,31 @@ export const Example = () => {
 
             {/*<CustomKanban />*/}
 
-            <DivCommon fd="row" gap="1rem" ai="baseline">
-                <DivCommon>
-                    <TitleCommon as="h1" size="xl">H1 size xl</TitleCommon>
-                    <TitleCommon as="h2" size="l">H2 size l</TitleCommon>
-                    <TitleCommon as="h3" size="m">H3 size m</TitleCommon>
-                    <TitleCommon as="h4" size="s">Hh size s</TitleCommon>
-                    <TitleCommon as="h5" size="xs">H5 size xs</TitleCommon>
-                </DivCommon>
-                <DivCommon>
-                    <TitleCommon as="p" size="xl">P size xl</TitleCommon>
-                    <TitleCommon as="p" size="l">P size l</TitleCommon>
-                    <TitleCommon as="p" size="m">P size m</TitleCommon>
-                    <TitleCommon as="p" size="s">P size s</TitleCommon>
-                    <TitleCommon as="p" size="xs">P size xs</TitleCommon>
-                </DivCommon>
-                <DivCommon>
-                    <TitleCommon as="span" size="xl">SPAN size xl</TitleCommon>
-                    <TitleCommon as="span" size="l">SPAN size l</TitleCommon>
-                    <TitleCommon as="span" size="m">SPAN size m</TitleCommon>
-                    <TitleCommon as="span" size="s">SPAN size s</TitleCommon>
-                    <TitleCommon as="span" size="xs">SPAN size xs</TitleCommon>
-                </DivCommon>
-            </DivCommon>
+            <TagCommon fd="row" gap="1rem" ai="baseline">
+                <TagCommon>
+                    <TextCommon as="h1" size="xl">H1 size xl</TextCommon>
+                    <TextCommon as="h2" size="l">H2 size l</TextCommon>
+                    <TextCommon as="h3" size="m">H3 size m</TextCommon>
+                    <TextCommon as="h4" size="s">Hh size s</TextCommon>
+                    <TextCommon as="h5" size="xs">H5 size xs</TextCommon>
+                </TagCommon>
+                <TagCommon>
+                    <TextCommon as="p" size="xl">P size xl</TextCommon>
+                    <TextCommon as="p" size="l">P size l</TextCommon>
+                    <TextCommon as="p" size="m">P size m</TextCommon>
+                    <TextCommon as="p" size="s">P size s</TextCommon>
+                    <TextCommon as="p" size="xs">P size xs</TextCommon>
+                </TagCommon>
+                <TagCommon>
+                    <TextCommon as="span" size="xl">SPAN size xl</TextCommon>
+                    <TextCommon as="span" size="l">SPAN size l</TextCommon>
+                    <TextCommon as="span" size="m">SPAN size m</TextCommon>
+                    <TextCommon as="span" size="s">SPAN size s</TextCommon>
+                    <TextCommon as="span" size="xs">SPAN size xs</TextCommon>
+                </TagCommon>
+            </TagCommon>
 
-            <DivCommon fd="row" gap={SPACES.l} margin="3rem 0">
+            <TagCommon fd="row" gap={SPACES.l} margin="3rem 0">
                 <Button
                     content="toast loading"
                     onClick={() => {
@@ -768,7 +768,7 @@ export const Example = () => {
                     content="toast warn"
                     onClick={() => toast.warn({title: 'sdssddsdsddssdsdds', text: 'text text text text'})}
                 />
-            </DivCommon>
+            </TagCommon>
 
 
         </Styled.Container>
