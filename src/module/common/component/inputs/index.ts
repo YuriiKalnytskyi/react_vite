@@ -1,12 +1,13 @@
-import { Calendar, CheckBox, MatchedWords, Switch, TextArea, Input, File } from '@/module/common/component';
+import {Calendar, CheckBox, MatchedWords, Switch, TextArea, Input, File, OTP} from '@/module/common/component';
 
 export const Inputs = Object.assign(Input, {
-  TextArea,
-  Calendar,
-  MatchedWords,
-  CheckBox,
-  Switch,
-  File
+    TextArea,
+    Calendar,
+    MatchedWords,
+    CheckBox,
+    Switch,
+    File,
+    OTP
 });
 
 export * from './input/input';
@@ -16,3 +17,4 @@ export * from './matched-words/matched-words.tsx';
 export * from './check-box/check-box.tsx';
 export * from './switch/switch.tsx';
 export * from './file/file.tsx'
+export * from './otp/otp.tsx'

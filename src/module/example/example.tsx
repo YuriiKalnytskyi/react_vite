@@ -12,6 +12,7 @@ import {
     Input,
     Inputs,
     MatchedWords,
+    OTP,
     Switch,
     Table,
     TextArea, toast
@@ -125,7 +126,6 @@ export const Example = () => {
         slidePosition && setSlidePositionDrawer(slidePosition);
         contentPosition && setContentPositionDrawer(contentPosition);
     };
-
 
     const generateRandomRows = (count: number, columnRange: [number, number], isColumnId: boolean) => {
         const [minColumn, maxColumn] = columnRange;
@@ -332,7 +332,9 @@ export const Example = () => {
                             />
                         </TagCommon>
                         INPUT STATE (default, readOnly, email, password)
-                        <TagCommon fd="row" gap={SPACES.l} margin="0 0 2rem 0">
+                        <TagCommon fd="row" ai='flex-end' gap={SPACES.l} margin="0 0 2rem 0">
+                            <OTP name='otp'  valueLength={4} />
+
                             <Input name="first_name" label="First Name" isSpellCheck/>
                             <Input
                                 name="last_name"
@@ -814,6 +816,26 @@ export const Example = () => {
                     onClick={() => toast.warn({title: 'sdssddsdsddssdsdds', text: 'text text text text'})}
                 />
             </TagCommon>
+
+
+
+            <Styled.Net>
+                {[1,2,3,4].map((v)=> <TagCommon key={v} className='item' background='red' >{v}</TagCommon> )}
+            </Styled.Net>
+
+            <Styled.Net2>
+                {[1,2,3,4].map((v)=> <TagCommon key={v} className='item' background='red' >{v}</TagCommon> )}
+            </Styled.Net2>
+
+
+
+            <Styled.NetGrid>
+                {[1,2,3,4].map((v)=> <TagCommon key={v} className='item' background='red' >{v}</TagCommon> )}
+            </Styled.NetGrid>
+
+            <Styled.NetGrid2>
+                {[1,2,3,4].map((v)=> <TagCommon key={v} className='item' background='red' >{v}</TagCommon> )}
+            </Styled.NetGrid2>
 
         </Styled.Container>
     );

@@ -106,7 +106,10 @@ export const HintOption = styled(motion.li)<{
   font-weight: ${FONTS.WEIGHTS.medium};
   cursor: pointer;
 
-  &:hover {
+    overscroll-behavior: contain ;
+
+
+    &:hover {
     background: ${({ $selected, theme }) =>
       $selected ? theme.COLORS.rgba(theme.COLORS.primary, 0.9) : theme.COLORS.rgba(theme.COLORS.primary, 0.6)};
   }
