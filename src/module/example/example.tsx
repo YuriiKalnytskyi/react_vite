@@ -30,9 +30,11 @@ import {APP_KEYS} from '../common/constants/index.ts';
 import {DrawerLayout, PopupLayout} from '@/module/common/layout';
 import {useThemeStore} from '@/store';
 import {DropDown} from '@/module/common/component/drop-down/drop-down.tsx';
-import {useTheme} from 'styled-components';
+import {css, useTheme} from 'styled-components';
 import {Accordion} from '@/module/common/component/accordion/accordion.tsx';
 import {DragAndDrop} from '@/module/common/component/drag-and-drop/drag-and-drop.tsx';
+import {List} from "@/module/common/component/list/list.tsx";
+import {exampleHttpService} from "@/api/services";
 
 const randomString = (minLength: number, maxLength: number): string => {
     const length = Math.floor(Math.random() * (maxLength - minLength + 1)) + minLength;
@@ -333,7 +335,7 @@ export const Example = () => {
                         </TagCommon>
                         INPUT STATE (default, readOnly, email, password)
                         <TagCommon fd="row" ai='flex-end' gap={SPACES.l} margin="0 0 2rem 0">
-                            <OTP name='otp'  valueLength={4} />
+                            <OTP name='otp' valueLength={4}/>
 
                             <Input name="first_name" label="First Name" isSpellCheck/>
                             <Input
@@ -818,25 +820,90 @@ export const Example = () => {
             </TagCommon>
 
 
-
             <Styled.Net>
-                {[1,2,3,4].map((v)=> <TagCommon key={v} className='item' background='red' >{v}</TagCommon> )}
+                {[1, 2, 3, 4].map((v) => <TagCommon key={v} className='item' background='red'>{v}</TagCommon>)}
             </Styled.Net>
 
             <Styled.Net2>
-                {[1,2,3,4].map((v)=> <TagCommon key={v} className='item' background='red' >{v}</TagCommon> )}
+                {[1, 2, 3, 4].map((v) => <TagCommon key={v} className='item' background='red'>{v}</TagCommon>)}
             </Styled.Net2>
 
 
-
             <Styled.NetGrid>
-                {[1,2,3,4].map((v)=> <TagCommon key={v} className='item' background='red' >{v}</TagCommon> )}
+                {[1, 2, 3, 4].map((v) => <TagCommon key={v} className='item' background='red'>{v}</TagCommon>)}
             </Styled.NetGrid>
 
             <Styled.NetGrid2>
-                {[1,2,3,4].map((v)=> <TagCommon key={v} className='item' background='red' >{v}</TagCommon> )}
+                {[1, 2, 3, 4].map((v) => <TagCommon key={v} className='item' background='red'>{v}</TagCommon>)}
             </Styled.NetGrid2>
 
+            <List
+                type='pagination'
+                request={{
+                    key: 'test2',
+                    function: exampleHttpService.all,
+                    items_key: 'items',
+                    count_key: "count",
+                    limit: 3
+                }}
+                liStyle={
+                    css`
+                        flex-grow: 1;
+                        flex-basis: 200px;
+                        height: 200px;
+
+                        padding: ${SPACES.l};
+
+                        border-radius: 20px;
+                        box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+                        0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
+                        0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
+                    `
+                }
+                parse={(value) => {
+                    return (
+                        <TagCommon fd='row' gap={SPACES.l} ai='center'>
+                            {value.title}
+                        </TagCommon>
+                    );
+                }}
+            />
+
+            <List
+                type='infinite'
+                request={{
+                    key: 'test',
+                    function: exampleHttpService.all,
+                    limit: 10,
+                    items_key: 'items',
+                    count_key: "count"
+                }}
+                isViewportEnter
+                liStyle={
+                    css`
+                        flex-grow: 1;
+                        flex-basis: 200px;
+                        height: 200px;
+
+                        padding: ${SPACES.l};
+                        
+                        border-radius: 20px;
+                        box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+                        0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
+                        0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
+                    `
+                }
+                parse={(value) => {
+                    return (
+                        <TagCommon fd='row' gap={SPACES.l} ai='center'>
+                            {value.title}
+                        </TagCommon>
+                    );
+                }}
+            />
+
+
         </Styled.Container>
+
     );
 };
