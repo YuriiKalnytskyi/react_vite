@@ -86,7 +86,7 @@ const prevNextBtnStyles = css`
     border-radius: ${SPACES.xxsm};
 
     &:hover {
-        background-color: ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.primary, 0.3)};
+        background-color: ${ ({theme})=>  theme.rgba(theme.COLORS.primary, 0.3)};
     }
 
     &:disabled {
@@ -94,7 +94,7 @@ const prevNextBtnStyles = css`
         background-color: ${ ({theme})=> theme.COLORS.white};
 
         .icon {
-            background: ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.black, 0.3)};
+            background: ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.3)};
         }
     }
 

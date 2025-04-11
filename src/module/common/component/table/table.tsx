@@ -8,6 +8,7 @@ import {CheckBox, Icon, Pagination} from '@/module/common/component';
 import {usePortalPositioning} from '@/module/common/hooks';
 
 import * as Styled from './table.styled';
+import {SettingsBork} from "@/module/common/component/table/settings-bork.tsx";
 
 export type Obj = Record<string, unknown>;
 export type Item = Obj | string;
@@ -119,7 +120,7 @@ export const TableIndex = <I extends Items>({
                                     onClick={onOrderColumn.bind(this, v.data_key)}
                                 />
                             )}
-                             {v.text}
+                            {v.text}
 
 
                             {
@@ -257,7 +258,8 @@ export const Table = <I extends Items>(props: ITableProps<I>) => {
     const ContainerWrapper = props.className === 'scroll' ? Styled.Container : Styled.Wrapper;
 
     return (
-        <>
+        <Styled.Content>
+            <SettingsBork/>
             <ContainerWrapper
                 className={props.className ?? ''}
                 id={props.className !== 'scroll' ? 'tableContainer' : undefined}
@@ -276,6 +278,6 @@ export const Table = <I extends Items>(props: ITableProps<I>) => {
                     />
                 </Styled.WrapperPagination>
             )}
-        </>
+        </Styled.Content>
     );
 };

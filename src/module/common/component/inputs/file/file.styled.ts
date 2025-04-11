@@ -21,11 +21,11 @@ export const Wrapper = styled(motion.div)<IWProps>`
     height: 4rem;
 
 
-    background: ${({ dragging, theme }) => dragging ? theme.COLORS.rgba(theme.COLORS.primary, 0.6) : 'transparent'};
+    background: ${({ dragging, theme }) => dragging ? theme.rgba(theme.COLORS.primary, 0.6) : 'transparent'};
     border: 1px dashed ${({
                               dragging,
                               theme
-                          }) => (dragging ? theme.COLORS.primary : theme.COLORS.rgba(theme.COLORS.primary, 0.6))};
+                          }) => (dragging ? theme.COLORS.primary : theme.rgba(theme.COLORS.primary, 0.6))};
     border-radius: 10px;
 
 
@@ -65,7 +65,7 @@ export const CloseButton = styled(motion.div)`
   position: absolute;
   top: 0;
   right: 0;
-  background: ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.black, 0.8)};
+  background: ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.8)};
   padding: 0;
   margin: 0;
   width: 1.25rem;

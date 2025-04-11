@@ -16,7 +16,7 @@ export const StyledToastContainer = styled.div`
     .Toastify__toast {
         background-color: ${({ theme }) => theme.COLORS.white};
         color: ${({ theme }) => theme.COLORS.black};
-        box-shadow: 0px 4px 6px ${({ theme }) => theme.COLORS.rgba(theme.COLORS.primary, 0.4)};
+        box-shadow: 0px 4px 6px ${({ theme }) => theme.rgba(theme.COLORS.primary, 0.4)};
         padding: 10px;
         border-radius: 4px;
     }

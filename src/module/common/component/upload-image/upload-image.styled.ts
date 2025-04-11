@@ -48,9 +48,9 @@ export const AvatarContainer = styled.div<{ dragging: boolean }>`
   width: 38.3125rem;
   height: 18.25rem;
   backdrop-filter: blur(0.125rem);
-  background: ${({ dragging,theme }) => dragging ? theme.COLORS.rgba(theme.COLORS.black, 0.4) : theme.COLORS.rgba(theme.COLORS.black, 0.8)};
+  background: ${({ dragging,theme }) => dragging ? theme.rgba(theme.COLORS.black, 0.4) : theme.rgba(theme.COLORS.black, 0.8)};
   border-radius: ${SPACES.xs};
-  border: 1px dashed ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.black, 0.8)};
+  border: 1px dashed ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.8)};
   display: flex;
   align-items: center;
   justify-content: center;

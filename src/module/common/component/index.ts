@@ -1,5 +1,5 @@
 export * from './buttons/index';
-export * from './loading';
+export * from './loader/loader.tsx';
 export * from './inputs/index';
 export * from './portal/index';
 export * from './drawer/index';

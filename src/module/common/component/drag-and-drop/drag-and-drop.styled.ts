@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
  export const Container = styled.section`
      width: 100%;
-     background: ${({ theme }) => theme.COLORS.rgba(theme.COLORS.primary, 0.5)};
+     background: ${({ theme }) => theme.rgba(theme.COLORS.primary, 0.5)};
      display: flex;
      padding: ${SPACES.l};
      gap: ${SPACES.l};
@@ -28,7 +28,7 @@ export const Column = styled.div<{ $active: boolean }>`
     background-color: ${({
                              $active,
                              theme
-                         }) => ($active ? theme.COLORS.rgba(theme.COLORS.primary, 0.2) : 'transparent')};
+                         }) => ($active ? theme.rgba(theme.COLORS.primary, 0.2) : 'transparent')};
     transition: background-color 0.2s;
 `;
 

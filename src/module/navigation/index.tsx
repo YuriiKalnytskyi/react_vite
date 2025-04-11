@@ -1,7 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { Loader } from '@/module/common/component/loading';
+import { Loader } from '@/module/common/component';
 import { APP_KEYS } from '@/module/common/constants';
 import { PublicPage } from '@/module/common/hocs';
 import { generateComponent } from '@/utils';

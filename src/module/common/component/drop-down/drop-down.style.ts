@@ -48,7 +48,7 @@ export const ItemContainer = styled(motion.ul).withConfig({
     display: none;
     transform-origin: top;
     background-color: ${({ theme }) => theme.COLORS.white};
-    box-shadow: 0 2px 8px ${({ theme }) => theme.COLORS.rgba(theme.COLORS.black, 0.1)};
+    box-shadow: 0 2px 8px ${({ theme }) => theme.rgba(theme.COLORS.black, 0.1)};
     border-radius: ${SPACES.xxsm};
     width: ${({ width }) => (width ? width : '100%')} !important;
     max-height: 14rem;
@@ -79,6 +79,6 @@ export const Item = styled(motion.li)<{
 
     &:hover {
         background: ${({ $selected, theme }) =>
-                $selected ? theme.COLORS.rgba(theme.COLORS.primary, 0.9) : theme.COLORS.rgba(theme.COLORS.primary, 0.6)};
+                $selected ? theme.rgba(theme.COLORS.primary, 0.9) : theme.rgba(theme.COLORS.primary, 0.6)};
     }
 `;

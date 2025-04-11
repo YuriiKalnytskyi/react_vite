@@ -211,7 +211,7 @@ export const Input= ({
               <Styled.ErrorPassword $isError={isError} $isSuccess={isSuccess} key={index}>
                 <IconCommon
                   icon={successIcon}
-                  background={isError ? theme.COLORS.error : isSuccess ? theme.COLORS.primary : theme.COLORS.rgba(theme.COLORS.black, 0.8)}
+                  background={isError ? theme.COLORS.error : isSuccess ? theme.COLORS.primary : theme.rgba(theme.COLORS.black, 0.8)}
                 />
 
                 {text}

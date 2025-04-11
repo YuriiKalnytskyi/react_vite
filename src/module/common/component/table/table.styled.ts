@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { FONTS, MEDIA, SPACES } from '@/theme';
 
-import { Fonts} from '../../styles';
+import { Fonts } from '../../styles';
 
 const layoutCss = css`
   display: table;
@@ -29,10 +29,13 @@ const cellControlledSizes = css`
         width: 3.3rem ;
     }
 `;
+export const Content = styled.section`
+    position: relative;
+`
 
 // ================= table components START ====================//
 export const Container = styled.div`
-  box-shadow: 0 0 0.625rem ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.black, 0.2)};
+  box-shadow: 0 0 0.625rem ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.2)};
   width: 100%;
   min-height: fit-content;
   &.scroll {
@@ -68,39 +71,41 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  overflow: hidden;
-  box-shadow: 0 0 0.625rem ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.black, 0.2)};
-  min-height: fit-content;
+    overflow: hidden;
+    box-shadow: 0 0 0.625rem ${({theme}) => theme.rgba(theme.COLORS.black, 0.2)};
+    min-height: fit-content;
 `;
 export const Table = styled.table`
     width: 100%;
-  min-width: 100%;
+    min-width: 100%;
+    position: relative;
 
-  &.full {
-    width: 81.25rem;
-  }
-  &.scroll {
-    width: 81.25rem;
-  }
-
-  &.pointer {
-    tbody tr * {
-      cursor: pointer !important;
+    &.full {
+        width: 81.25rem;
     }
-  }
 
-  border-collapse: collapse;
+    &.scroll {
+        width: 81.25rem;
+    }
 
-  @media screen and (max-width: ${MEDIA.tablet_s}) {
-    width: 81.25rem;
-  }
+    &.pointer {
+        tbody tr * {
+            cursor: pointer !important;
+        }
+    }
+    
+    border-collapse: collapse;
+
+    @media screen and (max-width: ${MEDIA.tablet_s}) {
+        width: 81.25rem;
+    }
 `;
 
 export const Head = styled.thead`
-  ${layoutCss};
-  position: sticky;
-  top: 0;
-  z-index: 1;
+    ${layoutCss};
+    position: sticky;
+    top: 0;
+    z-index: 1;
 `;
 
 export const Body = styled.tbody`
@@ -109,7 +114,7 @@ export const Body = styled.tbody`
   ${layoutCss};
 
   & > tr {
-    border-bottom: 1px solid ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.black, 0.1)};
+    border-bottom: 1px solid ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.1)};
   }
 
   & > tr:hover * {
@@ -133,7 +138,8 @@ export const HeadRow = styled.th`
 
     ${cellControlledSizes};
 
-    & > .order {
+    & > .order ,
+    & > .resizer {
         position: absolute;
         top: 50%;
         right: 1rem;
@@ -141,22 +147,23 @@ export const HeadRow = styled.th`
         transform: translate(-50%, -50%);
 
         &:hover {
-            background: ${({theme}) => theme.COLORS.black};
+            background: ${({theme}) => theme.rgba(theme.COLORS.black, 0.5)};
+        }
+    },
+
+    & > .order {
+        right: 1rem;
+        &:hover {
+            background: ${({theme}) => theme.rgba(theme.COLORS.black, 0.5)};
         }
     }
 
     & > .resizer {
-        position: absolute;
-        top: 50%;
         right: 0;
-
         transform: translate(0, -50%);
 
         cursor: e-resize;
 
-        &:hover {
-            background: ${({theme}) => theme.COLORS.black};
-        }
     }
 `;
 
@@ -171,8 +178,8 @@ export const Row = styled.tr`
   }
 
   &:hover {
-    background: ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.primary, 0.2)};
-    box-shadow: 0 2px 8px ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.black, 0.1)};
+    background: ${ ({theme})=>  theme.rgba(theme.COLORS.primary, 0.2)};
+    box-shadow: 0 2px 8px ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.1)};
   }
 `;
 
@@ -189,7 +196,7 @@ export const Data = styled.td`
     left: 0;
     top: -9999px;
     bottom: -9999px;
-    background-color: ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.primary, 0.1)};
+    background-color: ${ ({theme})=>  theme.rgba(theme.COLORS.primary, 0.1)};
     z-index: -1;
   }
 
@@ -237,8 +244,8 @@ export const Tooltip = styled.div`
 
     background: ${ ({theme})=>  theme.COLORS.white};
     border-radius: 8px;
-    border: 1px solid ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.black, 0.4)};
-    box-shadow: 0 0 4px ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.black, 0.8)};
+    border: 1px solid ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.4)};
+    box-shadow: 0 0 4px ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.8)};
 
     position: absolute;
     z-index: 1;
@@ -252,8 +259,7 @@ export const Tooltip = styled.div`
 
     &::-webkit-scrollbar-track {
         border-radius: 0.25rem;
-        background-color: ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.primary, 0.2)};
-        //background-color: transparent;
+        background-color: ${ ({theme})=>  theme.rgba(theme.COLORS.primary, 0.2)};
         margin-block: .2rem;
 
     }
@@ -262,19 +268,4 @@ export const Tooltip = styled.div`
         background-color: ${ ({theme})=>  theme.COLORS.primary};
         border-radius: 0.25rem;
     }
-`;
-
-
-export const Resizer = styled.div`
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 5px;
-  height: 100%;
-  cursor: col-resize;
-  background-color: transparent;
-  
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-  }
 `;

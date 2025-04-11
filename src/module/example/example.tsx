@@ -648,11 +648,12 @@ export const Example = () => {
             </Formik>
 
 
-            <DrawerLayout title={'Test'}
-                          open={openDrawer}
-                          slidePosition={slidePositionDrawer}
-                          contentPosition={contentPositionDrawer}
-                          onClose={onToggle.bind(this, null, null)}
+            <DrawerLayout
+                title={'Test'}
+                open={openDrawer}
+                slidePosition={slidePositionDrawer}
+                contentPosition={contentPositionDrawer}
+                onClose={onToggle.bind(this, null, null)}
             >
                 <TagCommon margin="3rem 0">
                     POPUP BUTTON
@@ -669,7 +670,6 @@ export const Example = () => {
                                 onClick={onTogglePopup.bind(this, 'center', 'center')}/>
                     </TagCommon>
                 </TagCommon>
-
             </DrawerLayout>
 
             <PopupLayout
@@ -886,7 +886,7 @@ export const Example = () => {
                         height: 200px;
 
                         padding: ${SPACES.l};
-                        
+
                         border-radius: 20px;
                         box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
                         0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),

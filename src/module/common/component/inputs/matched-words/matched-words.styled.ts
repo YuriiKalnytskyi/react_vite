@@ -52,14 +52,14 @@ export const SuggestedBlock = styled(motion.ul)<{ $position?: string }>`
     transform-origin: top;
     display: none;
     background: ${ ({theme})=>  theme.COLORS.white};
-    border: 1px solid ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.black, 0.4)};
+    border: 1px solid ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.4)};
 
     border-radius: 8px;
     width: 100%;
     min-width: 16rem;
     flex-direction: column;
     max-height: 14rem;
-    box-shadow: 0 0 4px ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.black, 0.8)};
+    box-shadow: 0 0 4px ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.8)};
 
     #search {
         width: 100%;
@@ -81,7 +81,7 @@ export const SuggestedBlock = styled(motion.ul)<{ $position?: string }>`
     }
 
     &::-webkit-scrollbar-track {
-        background-color: ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.primary, 0.2)};
+        background-color: ${ ({theme})=>  theme.rgba(theme.COLORS.primary, 0.2)};
 
     }
 
@@ -111,7 +111,7 @@ export const HintOption = styled(motion.li)<{
 
     &:hover {
     background: ${({ $selected, theme }) =>
-      $selected ? theme.COLORS.rgba(theme.COLORS.primary, 0.9) : theme.COLORS.rgba(theme.COLORS.primary, 0.6)};
+      $selected ? theme.rgba(theme.COLORS.primary, 0.9) : theme.rgba(theme.COLORS.primary, 0.6)};
   }
 
   &.notFound {
@@ -147,7 +147,7 @@ export const Chip = styled.li`
   font-weight: ${FONTS.WEIGHTS.semi_bold};
 
   padding: ${SPACES.xxs} ${SPACES.s};
-  background: ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.black, 0.3)};
+  background: ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.3)};
   border-radius: 4px;
 
   word-break: break-word;

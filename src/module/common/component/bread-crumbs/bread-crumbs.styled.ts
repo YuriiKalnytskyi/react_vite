@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
       color: ${ ({theme})=>  theme.COLORS.black};
     }
     &:not(:last-of-type) {
-      color: ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.black, 0.6 )};
+      color: ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.6 )};
       cursor: pointer;
       &:hover {
           color: ${ ({theme})=>  theme.COLORS.black};

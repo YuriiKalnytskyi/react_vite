@@ -31,7 +31,7 @@ export const Input = styled.textarea<{ $isError: boolean, readOnly?: boolean }>`
     }
 
     &::-webkit-scrollbar-track {
-        background-color: ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.primary, 0.2)};
+        background-color: ${ ({theme})=>  theme.rgba(theme.COLORS.primary, 0.2)};
 
     }
 

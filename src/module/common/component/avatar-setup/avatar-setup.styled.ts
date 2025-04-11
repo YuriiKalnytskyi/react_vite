@@ -30,8 +30,8 @@ export const AvatarContainer = styled.div<{ dragging: boolean }>`
   margin-bottom: ${SPACES.xxs};
   width: 4rem;
   height: 4rem;
-  background: ${({ dragging, theme }) => (dragging ? theme.COLORS.rgba(theme.COLORS.black, 0.6) : theme.COLORS.rgba(theme.COLORS.black, 0.8))};
-  border: 1px dashed ${({ dragging, theme }) => (dragging ? theme.COLORS.primary : theme.COLORS.rgba(theme.COLORS.black, 0.6))};
+  background: ${({ dragging, theme }) => (dragging ? theme.rgba(theme.COLORS.black, 0.6) : theme.rgba(theme.COLORS.black, 0.8))};
+  border: 1px dashed ${({ dragging, theme }) => (dragging ? theme.COLORS.primary : theme.rgba(theme.COLORS.black, 0.6))};
   border-radius: 50%;
 
   input {
@@ -63,7 +63,7 @@ export const CloseButton = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  background: ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.black, 0.8)};
+  background: ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.8)};
   padding: 0;
   margin: 0;
   width: 1.25rem;

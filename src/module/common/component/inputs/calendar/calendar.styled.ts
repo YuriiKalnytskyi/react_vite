@@ -39,7 +39,7 @@ const dayPicker = css`
     .rdp-day_selected,
     .rdp-day_selected:focus-visible,
     .rdp-day_selected:hover {
-        background-color: ${({ theme }) => theme.COLORS.rgba(theme.COLORS.black, 0.2)};
+        background-color: ${({ theme }) => theme.rgba(theme.COLORS.black, 0.2)};
         border-radius: 0;
         color: #2c2c2c;
     }

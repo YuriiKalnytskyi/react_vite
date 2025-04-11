@@ -68,7 +68,7 @@ export const Label = styled.label<{ $required?: boolean; $isError: boolean }>`
 
 export const commonStyles = css<{ $isError?: boolean, readOnly?: boolean }>`
     background: ${({ readOnly, theme }) => readOnly && theme.COLORS.white};
-    border: 1px solid ${({ $isError, theme }) => ($isError ? theme.COLORS.error : theme.COLORS.rgba(theme.COLORS.black, 0.4))};
+    border: 1px solid ${({ $isError, theme }) => ($isError ? theme.COLORS.error : theme.rgba(theme.COLORS.black, 0.4))};
     border-radius: 10px;
 
     font-family: ${FONTS.FAMILIES.inter};
@@ -91,7 +91,7 @@ export const commonStyles = css<{ $isError?: boolean, readOnly?: boolean }>`
     }
 
     &::placeholder {
-        color: ${ ({theme})=>  theme.COLORS.rgba(theme.COLORS.black, 0.4)};
+        color: ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.4)};
     }
 `;
 
@@ -168,7 +168,7 @@ export const Error = styled.div`
 export const ErrorPassword = styled.div<{ $isError: boolean; $isSuccess: boolean }>`
     ${Fonts};
     color: ${({ $isError, $isSuccess, theme }) =>
-            $isError ? theme.COLORS.error : $isSuccess ? theme.COLORS.primary : theme.COLORS.rgba(theme.COLORS.black, 0.8)};
+            $isError ? theme.COLORS.error : $isSuccess ? theme.COLORS.primary : theme.rgba(theme.COLORS.black, 0.8)};
     display: flex;
     gap: 2px;
 `;

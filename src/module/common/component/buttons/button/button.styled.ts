@@ -104,7 +104,7 @@ export const StyledButton = styled.button.withConfig({
 })<IButtonProps>`
     //all: unset;
 
-    & > #loader {
+    & > #Loader {
         height: 100% !important;
     }
 
@@ -113,7 +113,7 @@ export const StyledButton = styled.button.withConfig({
 `;
 
 export const NavLink = styled(Link)<TNavLink>`
-    & > #loader {
+    & > #Loader {
         height: 100% !important;
     }
 
