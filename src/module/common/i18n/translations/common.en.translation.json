@@ -33,5 +33,9 @@
   "select_purchases": "Select at least one purchase!",
   "no_data": "No data",
   "you_may_interested_in": " You may also be interested in",
-  "file": "<span>Select a file</span>  or drag and drop here"
+  "file": "<span>Select a file</span>  or drag and drop here",
+  "columns": "Columns",
+  "back": "Back",
+  "hide": "Hide all",
+  "show": "Show all"
 }

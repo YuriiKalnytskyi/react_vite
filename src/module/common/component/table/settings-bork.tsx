@@ -1,31 +1,94 @@
-import { AnimatePresence, motion } from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 import styled, {useTheme} from "styled-components";
-import {useState} from "react";
+import {ReactNode, useState} from "react";
 import arrowsDownUpIcon from '@/assets/icons/default/arrows-down-up.svg';
-import {Icon} from "@/module/common/component";
-import {Center} from "@/module/common/styles";
+import {CheckBox, Icon} from "@/module/common/component";
+import {Center, TagCommon, TextCommon} from "@/module/common/styles";
+import {useClickOutside} from "@/module/common/hooks";
+import {ArrayHeader} from "./table.type.ts";
+import {SPACES} from "@/theme";
+import {useTranslation} from "react-i18next";
 
-const settingsOptions = ['Колонки', 'Тема', 'Приватність'];
+interface IComponent {
+    text: string;
+    component: string;
+}
 
-
-export const SettingsBork = () => {
+export const SettingsBork = ({columns}: {
+    columns: {
+        columns: ArrayHeader[]
+        default: ArrayHeader[]
+        setColumns: (columns: ArrayHeader[]) => void
+    }
+}) => {
     const theme = useTheme();
-    const [showBork, setShowBork] = useState(false);
-    const [level, setLevel] = useState<'root' | 'option'>('root');
-    const [activeOption, setActiveOption] = useState<string | null>(null);
+    const {t} = useTranslation('translation', {keyPrefix: 'common'});
 
-    const handleOptionClick = (opt: string) => {
-        setActiveOption(opt);
-        setLevel('option');
+    const [isOpen, setIsOpen] = useState(false);
+    const [component, setComponent] = useState<IComponent | null>(null);
+
+    const onSetComponent = (opt: IComponent | null) => {
+        setComponent(opt);
     };
 
-    const goBack = () => {
-        setLevel('root');
-        setActiveOption(null);
-    };
+    const {ref} = useClickOutside(() => {
+        if (isOpen) {
+            setIsOpen(false);
+            setComponent(null)
+        }
+    })
+
+    const settingsOptions = [
+        {text: t('columns'), component: 'columns'},
+    ];
+
+
+    const Components: { [key: string]: ReactNode } = {
+        "columns": (
+            <TagCommon gap={SPACES.xxs}>
+                {
+                    columns.default.map((v) => (
+                        <CheckBox
+                            key={v.data_key}
+                            name={v.data_key}
+                            type='default'
+                            items={v.text}
+                            noFormikValue={{
+                                value: !!columns.columns.find((item => item.text === v.text)),
+                                onSetValue: () => {
+                                    if (!!columns.columns.find((item => item.text === v.text))) {
+                                        columns.setColumns(columns.columns.filter((item) => item.text !== v.text));
+                                    } else {
+                                        columns.setColumns([...columns.columns, v]);
+                                    }
+                                }
+                            }}
+                        />
+                    ))
+                }
+
+                <TagCommon fd='row' jc='space-between'>
+                    <TextCommon
+                        width='fit-content'
+                        onClick={() => columns.setColumns([])}
+                    >
+                        {t('hide')}
+                    </TextCommon>
+                    <TextCommon
+                        width='fit-content'
+                        onClick={() => columns.setColumns(columns.default)}
+                    >
+                        {t('show')}
+                    </TextCommon>
+                </TagCommon>
+
+            </TagCommon>
+        )
+    }
+
 
     return (
-        <Setting onClick={() => setShowBork(true)}>
+        <Setting ref={ref as any} onClick={() => setIsOpen(true)}>
             <Icon
                 icon={arrowsDownUpIcon}
                 height="0.7rem"
@@ -34,54 +97,45 @@ export const SettingsBork = () => {
             />
 
             <AnimatePresence>
-                {showBork && (
+                {isOpen && (
                     <StyledWrapper
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.9 }}
-                        transition={{ duration: 0.2 }}
+                        initial={{opacity: 0, scale: 0.9}}
+                        animate={{opacity: 1, scale: 1}}
+                        exit={{opacity: 0, scale: 0.9}}
+                        transition={{duration: 0.2}}
                     >
-                        {/* Рівень 1: Головне меню */}
                         <AnimatePresence mode="wait">
-                            {level === 'root' && (
+                            {!component && (
                                 <motion.div
                                     key="root"
-                                    initial={{ x: 30, opacity: 0 }}
-                                    animate={{ x: 0, opacity: 1 }}
-                                    exit={{ x: -30, opacity: 0 }}
-                                    transition={{ duration: 0.2 }}
+                                    initial={{x: 30, opacity: 0}}
+                                    animate={{x: 0, opacity: 1}}
+                                    exit={{x: -30, opacity: 0}}
+                                    transition={{duration: 0.2}}
                                 >
-                                    <div className="title">Налаштування</div>
-                                    <div className="options">
-                                        {settingsOptions.map((opt) => (
-                                            <div
-                                                key={opt}
-                                                className="option"
-                                                onClick={() => handleOptionClick(opt)}
-                                            >
-                                                {opt}
-                                            </div>
-                                        ))}
-                                    </div>
+                                    {settingsOptions.map((v) => (
+                                        <div
+                                            key={v.text}
+                                            className="option"
+                                            onClick={onSetComponent.bind(this, v)}
+                                        >
+                                            {v.text}
+                                        </div>
+                                    ))}
                                 </motion.div>
                             )}
 
-                            {/* Рівень 2: Вибрана опція */}
-                            {level === 'option' && activeOption && (
+                            {!!component && (
                                 <motion.div
                                     key="option"
-                                    initial={{ x: 30, opacity: 0 }}
-                                    animate={{ x: 0, opacity: 1 }}
-                                    exit={{ x: -30, opacity: 0 }}
-                                    transition={{ duration: 0.2 }}
+                                    initial={{x: 30, opacity: 0}}
+                                    animate={{x: 0, opacity: 1}}
+                                    exit={{x: -30, opacity: 0}}
+                                    transition={{duration: 0.2}}
                                 >
-                                    <div className="back" onClick={goBack}>← Назад</div>
-                                    <div className="title">{activeOption}</div>
-                                    <div className="details">
-                                        {activeOption === 'Звук' && <div>🔊 Виберіть рівень гучності</div>}
-                                        {activeOption === 'Тема' && <div>🌙 Світла / Темна</div>}
-                                        {activeOption === 'Приватність' && <div>🔒 Керування дозволами</div>}
-                                    </div>
+                                    <div className="back" onClick={onSetComponent.bind(this, null)}>← {t('back')}</div>
+                                    <div className="title">{component.text}</div>
+                                    {Components[component.component]}
                                 </motion.div>
                             )}
                         </AnimatePresence>
@@ -92,7 +146,7 @@ export const SettingsBork = () => {
     );
 };
 
-export const Setting  = styled.div`
+export const Setting = styled.div`
     height: 1.5rem;
     aspect-ratio: 1/1;
     position: absolute;
@@ -105,21 +159,6 @@ export const Setting  = styled.div`
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 
     ${Center};
-
-
-    .bork {
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translate(-50%, 0.5rem);
-        background-color: white;
-        color: black;
-        padding: 0.4rem 0.6rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-        white-space: nowrap;
-        font-size: 0.75rem;
-    }
 `
 const StyledWrapper = styled(motion.div)`
     position: absolute;
@@ -137,13 +176,13 @@ const StyledWrapper = styled(motion.div)`
 
     .back {
         cursor: pointer;
-        color: ${({ theme }) => theme.COLORS.primary};
+        color: ${({theme}) => theme.COLORS.primary};
         margin-bottom: 0.5rem;
         font-size: 0.75rem;
         transition: color 0.2s;
 
         &:hover {
-            color: ${({ theme }) => theme.rgba(theme.COLORS.black, 0.7)};
+            color: ${({theme}) => theme.rgba(theme.COLORS.black, 0.7)};
         }
     }
 
@@ -152,27 +191,23 @@ const StyledWrapper = styled(motion.div)`
         margin-bottom: 0.5rem;
     }
 
-    .options {
-        display: flex;
-        flex-direction: column;
-        gap: 0.3rem;
 
-        .option {
-            cursor: pointer;
-            padding: 0.3rem;
-            border-radius: 0.3rem;
-            transition: background 0.2s;
+    .option {
+        cursor: pointer;
+        padding: 0.3rem;
+        border-radius: 0.3rem;
+        transition: background 0.2s;
 
-            &:hover {
-                background: #f3f3f3;
-            }
+        &:hover {
+            background: #f3f3f3;
+        }
 
-            &.active {
-                background: ${({ theme }) => theme.COLORS.primary};
-                color: white;
-            }
+        &.active {
+            background: ${({theme}) => theme.COLORS.primary};
+            color: white;
         }
     }
+
 
     .details {
         margin-top: 0.6rem;

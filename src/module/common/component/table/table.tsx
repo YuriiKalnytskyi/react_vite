@@ -1,4 +1,4 @@
-import {Dispatch, SetStateAction, useRef, useState} from 'react';
+import {useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {useTheme} from 'styled-components';
 
@@ -9,44 +9,8 @@ import {usePortalPositioning} from '@/module/common/hooks';
 
 import * as Styled from './table.styled';
 import {SettingsBork} from "@/module/common/component/table/settings-bork.tsx";
+import {Items, ITableProps} from './table.type.ts'
 
-export type Obj = Record<string, unknown>;
-export type Item = Obj | string;
-export type Items = Item[];
-
-export interface ITableProps<I extends Items> {
-    arrayHeader: {
-        text: string;
-        data_key: string;
-        className?: 'title' | 'id' | string;
-        isOrder?: boolean;
-        isResizer?: boolean;
-    }[];
-    arrayBody: I;
-    parseValue?: (
-        value: I[number][keyof I[number]],
-        key: string,
-        valueObj: I[number],
-        index: number
-    ) => unknown;
-    onNavigate?: (value: I[number]) => void;
-    pagination?: {
-        total: number;
-        page: number;
-        pageSize: number;
-        setPage: (page: number) => void;
-    };
-    select?: {
-        row_id: keyof I[number];
-        items: I[number][keyof I[number]][];
-        setItems: Dispatch<SetStateAction<I[number][keyof I[number]][]>>;
-        isAllSelect: boolean
-    };
-    className?: 'scroll' | 'table' | 'full' | 'pointer' | string;
-    tooltipLength?: number;
-    linesToTruncate?: number;
-    onOrderColumn?: (data_key: string) => void;
-}
 
 export const TableIndex = <I extends Items>({
                                                 arrayHeader,
@@ -257,14 +221,26 @@ export const TableIndex = <I extends Items>({
 export const Table = <I extends Items>(props: ITableProps<I>) => {
     const ContainerWrapper = props.className === 'scroll' ? Styled.Container : Styled.Wrapper;
 
+    const [columns, setColumns] = useState(props?.arrayHeader);
+
+    console.log(columns, '=dcmdkcmdc')
+
     return (
         <Styled.Content>
-            <SettingsBork/>
+            <SettingsBork
+                columns={{
+                    default: props?.arrayHeader,
+                    setColumns: setColumns,
+                    columns
+                }}
+            />
             <ContainerWrapper
                 className={props.className ?? ''}
                 id={props.className !== 'scroll' ? 'tableContainer' : undefined}
             >
-                <TableIndex {...props} />
+                <TableIndex {...props} arrayHeader={ props?.arrayHeader?.filter(header =>
+                    columns?.some(col => col.data_key === header.data_key)
+                )} />
             </ContainerWrapper>
             {props.pagination && props.pagination.total > props.pagination.pageSize && (
                 <Styled.WrapperPagination>
