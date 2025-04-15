@@ -88,7 +88,7 @@ export const SettingsBork = ({columns}: {
 
 
     return (
-        <Setting ref={ref as any} onClick={() => setIsOpen(true)}>
+        <Setting ref={ref as any} onClick={() => setIsOpen(!isOpen)}>
             <Icon
                 icon={arrowsDownUpIcon}
                 height="0.7rem"
