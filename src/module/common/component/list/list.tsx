@@ -55,39 +55,33 @@ export const List = <T, P>({
     const limit = request?.limit ?? 10;
 
     if (type === 'infinite') {
-        interface PageData {
-            items: T[ItemsKey<T>] extends (infer U)[] ? U : T[ItemsKey<T>];
-            count: number;
-            nextPage: number;
-            hasMore: boolean;
-        }
-
         const {
             data,
             fetchNextPage,
             hasNextPage,
             isFetchingNextPage,
-        } = useInfiniteQuery<PageData>({
+        } = useInfiniteQuery({
             queryKey: [request.key, request?.options_sort ?? {}],
             queryFn: async ({pageParam = 1}) => {
+
                 const res = await request.function({
                     page: pageParam,
                     limit,
                     ...(request?.options_sort ?? {}),
                 } as P);
 
-                const posts = res[request.items_key] as Prettify<T[ItemsKey<T>] extends (infer U)[] ? U : T[ItemsKey<T>]>;
+                const items = res[request.items_key] as Prettify<T[ItemsKey<T>] extends (infer U)[] ? U : T[ItemsKey<T>]>;
                 const count = Number(res?.[request.count_key]) ?? 0;
 
                 return {
-                    items: posts,
+                    items,
                     count,
                     nextPage: pageParam + 1,
-                    hasMore: ((Array.isArray(posts) ? posts : [])?.length ?? 0) > 0,
+                    hasMore: ((Array.isArray(items) ? items : [])?.length ?? 0) > 0,
                 };
             },
-            getNextPageParam: (lastPage) =>
-                lastPage.hasMore ? lastPage.nextPage : undefined,
+            getNextPageParam: (lastPage) => lastPage.hasMore ? lastPage.nextPage : undefined,
+            initialPageParam: 1,
         });
 
         const items = data?.pages.flatMap((page) => page.items) as Prettify<T>[];

@@ -223,8 +223,6 @@ export const Table = <I extends Items>(props: ITableProps<I>) => {
 
     const [columns, setColumns] = useState(props?.arrayHeader);
 
-    console.log(columns, '=dcmdkcmdc')
-
     return (
         <Styled.Content>
             <SettingsBork
