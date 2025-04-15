@@ -1,32 +1,32 @@
 import { ReactNode, RefObject, useState } from 'react';
 
 import { useClickOutside, usePortalPositioning } from '@/module/common/hooks';
+import { IMargin } from '@/module/common/types';
 import { functionStub } from '@/utils';
 
 import * as Styled from './drop-down.style.ts';
-import { IMargin } from '@/module/common/types';
 
 interface IDropDownProps extends IMargin {
   visibleBlock:
     | ReactNode
     | (({
-          focused,
-          onSetIsFocused
-        }: {
-    focused: boolean;
-    onSetIsFocused: (flag?: boolean) => void;
-  }) => ReactNode);
+        focused,
+        onSetIsFocused
+      }: {
+        focused: boolean;
+        onSetIsFocused: (flag?: boolean) => void;
+      }) => ReactNode);
   popupBlock:
     | ReactNode
     | (({
-          focused,
-          onSetIsFocused
-        }: {
-    focused: boolean;
-    onSetIsFocused: (flag?: boolean) => void;
-    ItemTag: any
-    variants: any
-  }) => ReactNode);
+        focused,
+        onSetIsFocused
+      }: {
+        focused: boolean;
+        onSetIsFocused: (flag?: boolean) => void;
+        ItemTag: any;
+        variants: any;
+      }) => ReactNode);
   position?: 'left' | 'right';
   isHover?: boolean;
   isClick?: boolean;
@@ -34,14 +34,14 @@ interface IDropDownProps extends IMargin {
 }
 
 export const DropDown = ({
-                           visibleBlock,
-                           popupBlock,
-                           position,
-                           isHover,
-                           isClick,
-                           width,
-                           ...props
-                         }: IDropDownProps) => {
+  visibleBlock,
+  popupBlock,
+  position,
+  isHover,
+  isClick,
+  width,
+  ...props
+}: IDropDownProps) => {
   const [focused, setFocused] = useState(false);
 
   const onSetIsFocused = (flag?: boolean) => {
@@ -51,7 +51,6 @@ export const DropDown = ({
   const { ref } = useClickOutside(() => {
     onSetIsFocused(false);
   });
-
 
   const { setting, Component, isParentScroll } = usePortalPositioning(ref.current, focused);
 
@@ -96,7 +95,7 @@ export const DropDown = ({
   return (
     <Styled.Wrapper
       animate={focused ? 'open' : 'closed'}
-      initial="closed"
+      initial='closed'
       $focused={focused}
       ref={ref as RefObject<HTMLDivElement>}
       onMouseEnter={isHover ? onSetIsFocused.bind(this, true) : functionStub}
@@ -105,28 +104,32 @@ export const DropDown = ({
       width={width}
       {...props}
     >
-      {typeof visibleBlock === 'function' ? visibleBlock({ focused: focused, onSetIsFocused }) : visibleBlock}
+      {typeof visibleBlock === 'function'
+        ? visibleBlock({ focused: focused, onSetIsFocused })
+        : visibleBlock}
 
-      {focused &&
+      {focused && (
         <Component>
           <Styled.ItemContainer
-            id="DropDownChildren"
+            id='DropDownChildren'
             width={width}
             position={position}
             initial={wrapperVariants.closed}
             variants={wrapperVariants}
-            exit="closed"
+            exit='closed'
             style={isParentScroll ? setting : {}}
           >
-            {typeof popupBlock === 'function' ? popupBlock({
-              focused: focused,
-              onSetIsFocused,
-              ItemTag: Styled.Item,
-              variants: itemVariants
-            }) : popupBlock}
+            {typeof popupBlock === 'function'
+              ? popupBlock({
+                  focused: focused,
+                  onSetIsFocused,
+                  ItemTag: Styled.Item,
+                  variants: itemVariants
+                })
+              : popupBlock}
           </Styled.ItemContainer>
         </Component>
-      }
+      )}
     </Styled.Wrapper>
   );
 };

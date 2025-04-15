@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { Fonts } from '@/module/common/styles';
-import {  FONTS, SPACES } from '@/theme';
+import { FONTS, SPACES } from '@/theme';
 
 export const Container = styled.div`
   display: flex;
@@ -21,23 +21,23 @@ export const PaginateButtonsList = styled.ul`
     justify-content: center;
     gap: ${SPACES.xxs};
   }
-    
-    .Input {
-        height: 2rem;
-        width: 2rem;
-        padding: 0;
-        border-radius: 0.25rem;
-        text-align: center;
-        font-size: ${FONTS.SIZES.m};
-    }
+
+  .Input {
+    height: 2rem;
+    width: 2rem;
+    padding: 0;
+    border-radius: 0.25rem;
+    text-align: center;
+    font-size: ${FONTS.SIZES.m};
+  }
 `;
 export const PaginateButtonsListItem = styled.li`
-    cursor: pointer
+  cursor: pointer;
 `;
 export const PaginateInput = styled.li`
-    input {
-        cursor: text;
-    }
+  input {
+    cursor: text;
+  }
 `;
 
 const buttonsCommonStyles = css`
@@ -48,7 +48,7 @@ const buttonsCommonStyles = css`
   padding: 0;
   margin: 0;
 
-  background-color: ${ ({theme})=> theme.COLORS.white};
+  background-color: ${({ theme }) => theme.COLORS.white};
   ${Fonts};
 
   border-radius: 50%;
@@ -63,51 +63,51 @@ export const PaginationButton = styled.button`
   border-radius: ${SPACES.xxsm};
 
   &.selected {
-    background: ${ ({theme})=> theme.COLORS.primary};
-    color: ${ ({theme})=> theme.COLORS.white};
+    background: ${({ theme }) => theme.COLORS.primary};
+    color: ${({ theme }) => theme.COLORS.white};
     font-weight: ${FONTS.WEIGHTS.semi_bold};
   }
 
   &:hover {
-    background: ${ ({theme})=> theme.COLORS.primary};
-    color: ${ ({theme})=> theme.COLORS.white};
+    background: ${({ theme }) => theme.COLORS.primary};
+    color: ${({ theme }) => theme.COLORS.white};
     font-weight: ${FONTS.WEIGHTS.semi_bold};
   }
 `;
 
 const prevNextBtnStyles = css`
-    ${buttonsCommonStyles};
-    width: 2rem;
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  ${buttonsCommonStyles};
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    border-radius: ${SPACES.xxsm};
+  border-radius: ${SPACES.xxsm};
 
-    &:hover {
-        background-color: ${ ({theme})=>  theme.rgba(theme.COLORS.primary, 0.3)};
+  &:hover {
+    background-color: ${({ theme }) => theme.rgba(theme.COLORS.primary, 0.3)};
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    background-color: ${({ theme }) => theme.COLORS.white};
+
+    .icon {
+      background: ${({ theme }) => theme.rgba(theme.COLORS.black, 0.3)};
     }
+  }
 
-    &:disabled {
-        opacity: 0.5;
-        background-color: ${ ({theme})=> theme.COLORS.white};
-
-        .icon {
-            background: ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.3)};
-        }
-    }
-
-    &:active:not(:disabled) {
-        transform: scale(0.98);
-    }
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
 `;
 
 export const PrevPageButton = styled.button`
   ${prevNextBtnStyles};
   margin-right: 0.5rem;
   .icon {
-    background: ${ ({theme})=> theme.COLORS.primary};
+    background: ${({ theme }) => theme.COLORS.primary};
   }
 `;
 
@@ -115,6 +115,6 @@ export const NextPageButton = styled.button`
   ${prevNextBtnStyles};
   margin-left: 0.5rem;
   .icon {
-    background: ${ ({theme})=> theme.COLORS.primary};
+    background: ${({ theme }) => theme.COLORS.primary};
   }
 `;

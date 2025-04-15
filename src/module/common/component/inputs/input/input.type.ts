@@ -1,5 +1,6 @@
-import { IIconInput, IInputDefault, IMargin } from '@/module/common/types';
 import { KeyboardEvent, RefObject } from 'react';
+
+import { IIconInput, IInputDefault, IMargin } from '@/module/common/types';
 
 export interface IInputProps extends IMargin, IInputDefault {
   type?: 'password' | 'email' | 'text' | 'number';

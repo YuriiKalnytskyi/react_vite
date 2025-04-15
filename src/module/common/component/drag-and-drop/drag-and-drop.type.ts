@@ -3,10 +3,7 @@ import { DragEvent } from 'react';
 export type Obj = Record<string, unknown>;
 export type Item = Obj;
 
-interface IColumnsProps<
-  C extends Item,
-  R extends Item
-> {
+interface IColumnsProps<C extends Item, R extends Item> {
   columns: C[];
   rows: R[];
   columnBinding: C extends Obj ? keyof C : string;
@@ -14,12 +11,10 @@ interface IColumnsProps<
   rowToColumnBinding: R extends Obj ? keyof R : string;
   title: R extends Obj ? keyof R : string;
   settings?: Record<string, any>;
-  setState: ({ columns, rows }: { columns: C[], rows: R[] }) => void;
+  setState: ({ columns, rows }: { columns: C[]; rows: R[] }) => void;
 }
 
-interface IRowsProps<
-  R extends Item
-> {
+interface IRowsProps<R extends Item> {
   rows: R[];
   rowBinding: R extends Obj ? keyof R : string;
   title: R extends Obj ? keyof R : string;
@@ -27,15 +22,12 @@ interface IRowsProps<
   setState: ({ rows }: { rows: R[] }) => void;
 }
 
-export type DragAndDropProps<
-  I extends Item,
-  R extends Item
-> =
+export type DragAndDropProps<I extends Item, R extends Item> =
   | { type: 'columns'; props: IColumnsProps<I, R> }
   | { type: 'rows'; props: IRowsProps<R> };
 
 type SetStateMany<C extends Item, R extends Item> = {
-  setState: ({ columns, rows }: { columns: C[], rows: R[] }) => void;
+  setState: ({ columns, rows }: { columns: C[]; rows: R[] }) => void;
   type: 'many';
 };
 
@@ -55,9 +47,8 @@ interface IBaseColumnComponentProps<C extends Item, R extends Item> {
 }
 
 export type IColumnComponentProps<C extends Item, R extends Item> =
-  (IBaseColumnComponentProps<C, R> & SetStateMany<C, R>) |
-  (IBaseColumnComponentProps<C, R> & SetStateSingle<R>);
-
+  | (IBaseColumnComponentProps<C, R> & SetStateMany<C, R>)
+  | (IBaseColumnComponentProps<C, R> & SetStateSingle<R>);
 
 export interface IRowProps<R extends Item> {
   row: R;

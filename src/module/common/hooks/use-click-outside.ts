@@ -20,7 +20,6 @@
 //
 //   return { ref };
 // };
-
 import { RefObject, useEffect, useRef } from 'react';
 
 export const useClickOutside = (
@@ -31,8 +30,11 @@ export const useClickOutside = (
 
   const handleClick = (e: MouseEvent) => {
     if (
-      ref.current && !ref.current.contains(e.target as Node) &&
-      ![ref, ...(additionalRefs ?? [])].some((additionalRef) => additionalRef.current?.contains(e.target as Node))
+      ref.current &&
+      !ref.current.contains(e.target as Node) &&
+      ![ref, ...(additionalRefs ?? [])].some((additionalRef) =>
+        additionalRef.current?.contains(e.target as Node)
+      )
     ) {
       callback();
     }
@@ -48,4 +50,3 @@ export const useClickOutside = (
 
   return { ref };
 };
-

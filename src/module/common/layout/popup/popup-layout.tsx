@@ -1,11 +1,11 @@
 import { MouseEvent, ReactNode } from 'react';
 
+import { Drawer } from '@/module/common/component';
+import { useIsMobile } from '@/module/common/hooks';
+import { ContentPositionType } from '@/module/common/types';
 import '@/styles/popup-layout.css';
 
 import * as Styled from './popup-layout.styled';
-import { Drawer } from '@/module/common/component';
-import { ContentPositionType } from '@/module/common/types';
-import { useIsMobile } from '@/module/common/hooks';
 
 export interface IPopupLayout {
   onClose: () => void;
@@ -19,20 +19,20 @@ export interface IPopupLayout {
 }
 
 export const PopupLayout = ({
-                              children,
-                              onClose,
-                              open,
-                              contentPosition = 'center',
-                              slidePosition = 'right',
-                              ...props
-                            }: IPopupLayout) => {
+  children,
+  onClose,
+  open,
+  contentPosition = 'center',
+  slidePosition = 'right',
+  ...props
+}: IPopupLayout) => {
   const contentPositionProps = useIsMobile()
     ? ['bottom', 'top', 'left', 'right'].includes(contentPosition)
       ? contentPosition
       : 'center'
     : ['bottom', 'top', 'left', 'right'].includes(contentPosition)
-      ? 'center'
-      : contentPosition;
+    ? 'center'
+    : contentPosition;
 
   return (
     <Drawer
@@ -53,7 +53,6 @@ export const PopupLayout = ({
       </div>
     </Drawer>
   );
-
 };
 
 export interface IPopupLayoutBottom {

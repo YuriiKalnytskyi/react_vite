@@ -1,6 +1,6 @@
 import { KeyboardEvent, RefObject } from 'react';
 
-type  selectedItemIndex = number | null
+type selectedItemIndex = number | null;
 
 interface IProps<T> {
   selectedItemIndex: selectedItemIndex;
@@ -10,7 +10,7 @@ interface IProps<T> {
   ref: RefObject<HTMLUListElement>;
 }
 
-export const useHandleKeyPress = <T, >(
+export const useHandleKeyPress = <T>(
   e: KeyboardEvent<HTMLInputElement>,
   { items, ref, selectedItemIndex = 0, setSelectedItemIndex, setInputValue }: IProps<T>
 ) => {
@@ -24,8 +24,8 @@ export const useHandleKeyPress = <T, >(
     e.key === 'ArrowDown'
       ? (selectedItemIndex + 1) % items.length
       : e.key === 'ArrowUp'
-        ? (selectedItemIndex - 1 + items.length) % items.length
-        : selectedItemIndex;
+      ? (selectedItemIndex - 1 + items.length) % items.length
+      : selectedItemIndex;
 
   const itemTop = nextHint * itemHeight;
 
@@ -38,7 +38,10 @@ export const useHandleKeyPress = <T, >(
       scrollTop = 0;
     }
 
-    if (e.key === 'ArrowDown' && itemTop > container.scrollHeight - containerHeight + scrollOffset) {
+    if (
+      e.key === 'ArrowDown' &&
+      itemTop > container.scrollHeight - containerHeight + scrollOffset
+    ) {
       scrollTop = container.scrollHeight - containerHeight;
     }
 

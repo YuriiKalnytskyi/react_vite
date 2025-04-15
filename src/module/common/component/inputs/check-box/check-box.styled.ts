@@ -4,24 +4,23 @@ import { Fonts, Margin } from '@/module/common/styles';
 import { IMargin } from '@/module/common/types';
 
 export const Label = styled.label<IMargin>`
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    align-items: baseline;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: baseline;
 
+  outline: none;
 
-    outline: none;
+  ${Margin};
+  ${Fonts};
 
-    ${Margin};
-    ${Fonts};
-
-    &:focus,
-    &:focus-within ,
-    &:hover {
-        & > .text::before {
-            border: 2px solid ${({theme})=> theme.COLORS.primary} !important;
-        }
+  &:focus,
+  &:focus-within,
+  &:hover {
+    & > .text::before {
+      border: 2px solid ${({ theme }) => theme.COLORS.primary} !important;
     }
+  }
 `;
 
 export const Input = styled.input<{ background?: string }>`
@@ -32,11 +31,11 @@ export const Input = styled.input<{ background?: string }>`
 
   &:checked ~ .text::after {
     opacity: 1;
-    background: ${ ({theme})=>  theme.COLORS.error};
+    background: ${({ theme }) => theme.COLORS.error};
   }
 
   &:checked ~ .text::before {
-    border: 2px solid ${({theme})=> theme.COLORS.black} !important;
+    border: 2px solid ${({ theme }) => theme.COLORS.black} !important;
   }
 
   &:focus ~ .text::before {
@@ -52,7 +51,7 @@ export const Span = styled.span<{ height?: string; type: string }>`
     display: block;
     ${Fonts};
 
-    color: ${ ({theme})=>  theme.COLORS.black};
+    color: ${({ theme }) => theme.COLORS.black};
 
     padding-left: 2.375rem;
   }
@@ -63,8 +62,8 @@ export const Span = styled.span<{ height?: string; type: string }>`
     height: ${({ height }) => height ?? '1.375rem'};
     aspect-ratio: 1/1;
 
-    border: 2px solid ${({theme})=> theme.COLORS.black} !important;
-    background: ${ ({theme})=>  theme.COLORS.white};
+    border: 2px solid ${({ theme }) => theme.COLORS.black} !important;
+    background: ${({ theme }) => theme.COLORS.white};
     border-radius: ${({ type }) => (type === 'radio' ? '50%' : '5px')};
     cursor: pointer;
     position: absolute;
@@ -82,7 +81,7 @@ export const Span = styled.span<{ height?: string; type: string }>`
     -webkit-transform: scale(0);
     transform-origin: bottom left;
     transition: 120ms ease-in-out;
-    box-shadow: inset 1em 1em ${({theme})=> theme.COLORS.primary};
+    box-shadow: inset 1em 1em ${({ theme }) => theme.COLORS.primary};
     cursor: pointer;
     opacity: 0;
     position: absolute;

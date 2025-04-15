@@ -1,11 +1,11 @@
 import { getIn, useFormikContext } from 'formik';
-import { ChangeEvent, DragEvent, useCallback, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { ChangeEvent, DragEvent, useCallback, useRef, useState } from 'react';
 
 import deleteIcon from '@/assets/icons/default/delete.svg';
+import { fileService } from '@/module/common/services';
 
 import * as Styled from './file.styled.ts';
-import { fileService } from '@/module/common/services';
 
 export interface IAvatarSetup {
   readOnly?: boolean;
@@ -20,7 +20,6 @@ export interface IAvatarSetup {
 export const File = ({ name, noFormikValue, label, ...props }: IAvatarSetup) => {
   const { setFieldValue, value } = (() => {
     if (noFormikValue) {
-
       return {
         value: noFormikValue.value,
         setFieldValue: noFormikValue.setFieldValue
@@ -95,38 +94,39 @@ export const File = ({ name, noFormikValue, label, ...props }: IAvatarSetup) => 
         <Styled.Avatar
           as={motion.img}
           src={value.path}
-          alt="avatar"
+          alt='avatar'
           initial={{ scale: 0.9 }}
           animate={{ scale: 1 }}
         />
       ) : (
         <Styled.TranslateText
-          i18nKey="common.file"
+          i18nKey='common.file'
           components={{
-            span: (
-              <Styled.Span />
-            )
+            span: <Styled.Span />
           }}
         />
-      )
-      }
+      )}
 
-      <input ref={ref} id="field-upload" type="file" accept="image/*" onChange={onChange} title="" />
+      <input
+        ref={ref}
+        id='field-upload'
+        type='file'
+        accept='image/*'
+        onChange={onChange}
+        title=''
+      />
 
-      {
-        value && (
-          <Styled.CloseButton
-            as={motion.div}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            whileHover={{ scale: 1.2 }}
-            onClick={delAvatar}
-          >
-            <img src={deleteIcon} alt={'icon delete'} />
-          </Styled.CloseButton>
-        )
-      }
+      {value && (
+        <Styled.CloseButton
+          as={motion.div}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          whileHover={{ scale: 1.2 }}
+          onClick={delAvatar}
+        >
+          <img src={deleteIcon} alt={'icon delete'} />
+        </Styled.CloseButton>
+      )}
     </Styled.Wrapper>
-
   );
 };

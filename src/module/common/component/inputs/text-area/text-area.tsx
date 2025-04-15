@@ -1,13 +1,13 @@
 import { getIn, useFormikContext } from 'formik';
 import { ChangeEvent, forwardRef, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { functionStub } from '@/utils';
 
 import { useAutoResizeTextArea } from '../../../hooks';
 import { IInputDefault, IMargin } from '../../../types';
-import * as Styled from './text-area.styled.ts';
 import * as StyledCommon from '../input/input.styled.ts';
-import { functionStub } from '@/utils';
-import { useTranslation } from 'react-i18next';
-
+import * as Styled from './text-area.styled.ts';
 
 export interface IInputTextareaProps extends IInputDefault, IMargin {
   readOnly?: boolean;
@@ -71,7 +71,6 @@ export const TextArea = forwardRef<HTMLDivElement, IInputTextareaProps>(
     const { t: translate } = useTranslation();
     useAutoResizeTextArea(resizable ? textAreaRef.current : null, value, rows);
 
-
     const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
       const _value = e.target.value;
       setFieldValue(name, _value);
@@ -86,16 +85,11 @@ export const TextArea = forwardRef<HTMLDivElement, IInputTextareaProps>(
 
     const isError = touched && !!error;
 
-
     return (
-      <Styled.Wrapper
-        ref={ref}
-        {...props}
-        {...{ inert: readOnly ? '' : undefined }}
-      >
+      <Styled.Wrapper ref={ref} {...props} {...{ inert: readOnly ? '' : undefined }}>
         {label && (
           <StyledCommon.Label
-            className="Label"
+            className='Label'
             htmlFor={name}
             $isError={isError}
             $required={typeof label === 'object' && 'required' in label ? label.required : false}
@@ -126,13 +120,11 @@ export const TextArea = forwardRef<HTMLDivElement, IInputTextareaProps>(
           </StyledCommon.Error>
         ) : null}
 
-
-        {
-          isError && error !== 'common.is_required' && (
-            <StyledCommon.Error className="errorMessage textArea">{translate(error as string)}</StyledCommon.Error>
-          )
-        }
-
+        {isError && error !== 'common.is_required' && (
+          <StyledCommon.Error className='errorMessage textArea'>
+            {translate(error as string)}
+          </StyledCommon.Error>
+        )}
       </Styled.Wrapper>
     );
   }

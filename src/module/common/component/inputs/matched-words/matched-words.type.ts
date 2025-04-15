@@ -1,4 +1,5 @@
 import { IIconInput, IInputDefault, IMargin } from '@/module/common/types';
+
 export type Obj = Record<string, unknown>;
 export type Item = Obj | string;
 export type Items = Item[];
@@ -27,8 +28,8 @@ type IInputMatchedWordsTypeMulti<I extends Items> = {
   parseValue?: IParseValue<I>;
   addNewItem?:
     | {
-    onClick?: () => void;
-  }
+        onClick?: () => void;
+      }
     | boolean;
 };
 
@@ -38,22 +39,23 @@ export type IInputMatchedWordsProps<
   I extends Items,
   F extends FilterOptions,
   T extends IInputMatchedWordsType<I>
-> = IMargin & IInputDefault & {
-  type?: T;
-  filterOption?: F;
-  items: I;
-  visibleItem?: I extends Obj[] ? keyof I[number] : never | undefined;
-  parseValue?: IParseValue<I>;
+> = IMargin &
+  IInputDefault & {
+    type?: T;
+    filterOption?: F;
+    items: I;
+    visibleItem?: I extends Obj[] ? keyof I[number] : never | undefined;
+    parseValue?: IParseValue<I>;
 
-  startIcon?: IIconInput;
+    startIcon?: IIconInput;
 
-  width?: string;
-  height?: string;
-  readOnly?: boolean;
+    width?: string;
+    height?: string;
+    readOnly?: boolean;
 
-  noFormikValue?: {
-    value: T extends IInputMatchedWordsType<I> ? I[number][] : I[number];
-    setFieldValue: (name: string, value: I[number] | I[number][]) => void;
-    error?: string;
+    noFormikValue?: {
+      value: T extends IInputMatchedWordsType<I> ? I[number][] : I[number];
+      setFieldValue: (name: string, value: I[number] | I[number][]) => void;
+      error?: string;
+    };
   };
-};

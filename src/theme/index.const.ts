@@ -3,5 +3,5 @@ export const INDEX = {
   absolute: 2,
   drawer: 3,
   popup: 4,
-  extreme_case: 5,
+  extreme_case: 5
 };

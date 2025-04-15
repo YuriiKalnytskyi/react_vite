@@ -1,6 +1,7 @@
 import { getIn, useFormikContext } from 'formik';
 import { ChangeEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from 'styled-components';
 
 import successIcon from '@/assets/icons/default/success-icon.svg';
 import visibilityOnIcon from '@/assets/icons/default/visibility-icon.svg';
@@ -13,30 +14,28 @@ import { functionStub } from '@/utils';
 
 import * as Styled from './input.styled';
 import { IInputProps } from './input.type.ts';
-import { useTheme } from 'styled-components';
 
-export const Input= ({
-                        height,
-                        name,
-                        label,
-                        refProps,
-                        type,
-                        placeholder,
-                        isAutoComplete = false,
-                        isAutoFocus = false,
-                        isSpellCheck = false,
-                        isDontChange = false,
-                        onClick,
-                        onKeyDown,
-                        noFormikValue,
-                        endIcon,
-                        startIcon,
-                        optionOnChange,
-                        ...props
-                      }: IInputProps) => {
+export const Input = ({
+  height,
+  name,
+  label,
+  refProps,
+  type,
+  placeholder,
+  isAutoComplete = false,
+  isAutoFocus = false,
+  isSpellCheck = false,
+  isDontChange = false,
+  onClick,
+  onKeyDown,
+  noFormikValue,
+  endIcon,
+  startIcon,
+  optionOnChange,
+  ...props
+}: IInputProps) => {
   const { setFieldValue, value, error, setFieldTouched, setFieldFocus, touched } = (() => {
     if (noFormikValue) {
-
       return {
         value: noFormikValue.value,
         error: noFormikValue.error ?? '',
@@ -63,7 +62,6 @@ export const Input= ({
   const { t: translate } = useTranslation();
   const theme = useTheme();
 
-
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const _value = isDontChange ? '' : e.target.value;
     optionOnChange ? optionOnChange(name, _value, setFieldValue) : setFieldValue(name, _value);
@@ -82,10 +80,7 @@ export const Input= ({
   useEffect(() => {
     if (!ref.current) return;
 
-    const includesClasses = [
-      'Label',
-      'Input'
-    ];
+    const includesClasses = ['Label', 'Input'];
 
     const children = Array.from(ref.current.children);
     const allowedItems = children.filter((child) => {
@@ -95,7 +90,7 @@ export const Input= ({
 
     const contentHeight = allowedItems.reduce((acc, child) => {
       const className = (child as HTMLElement).className;
-      return acc + ((child as HTMLElement).offsetHeight / (className.includes('Input') ? 1.7 : 1));
+      return acc + (child as HTMLElement).offsetHeight / (className.includes('Input') ? 1.7 : 1);
     }, 0);
 
     const updateIconTop = (className: string) => {
@@ -104,7 +99,7 @@ export const Input= ({
       ) as HTMLElement | undefined;
 
       if (iconElement) {
-        iconElement.style.top = `${contentHeight - (allowedItems.length  === 1 ? 5 : 0)}px`;
+        iconElement.style.top = `${contentHeight - (allowedItems.length === 1 ? 5 : 0)}px`;
       }
     };
 
@@ -143,7 +138,7 @@ export const Input= ({
   const isPasswordError = isError && passwordError.includes(error ?? '');
   return (
     <Styled.Wrapper
-      id="input"
+      id='input'
       {...props}
       ref={ref}
       onClick={onClick ? onClick : functionStub}
@@ -151,7 +146,7 @@ export const Input= ({
     >
       {label && (
         <Styled.Label
-          className="Label"
+          className='Label'
           htmlFor={name}
           $isError={isError}
           $required={typeof label === 'object' && 'required' in label ? label.required : false}
@@ -162,7 +157,7 @@ export const Input= ({
 
       <Styled.Input
         id={name}
-        className="Input"
+        className='Input'
         ref={refProps}
         name={name}
         {...(isAutoComplete ? {} : { autoComplete: 'off', role: 'presentation' })}
@@ -184,11 +179,11 @@ export const Input= ({
       {type === 'password' && (
         <Styled.VisibilityIcon
           icon={isPassword ? visibilityOnIcon : visibilityOffIcon}
-          height="1.5rem"
+          height='1.5rem'
           onClick={() => {
             setIsPassword(!isPassword);
           }}
-          className="passwordIcon"
+          className='passwordIcon'
         />
       )}
 
@@ -199,11 +194,11 @@ export const Input= ({
       !passwordError.includes(error ?? '') &&
       error !== 'common.is_required' &&
       error !== 'invalid date' ? (
-        <Styled.Error className="errorMessage">{translate(error as string)}</Styled.Error>
+        <Styled.Error className='errorMessage'>{translate(error as string)}</Styled.Error>
       ) : null}
 
       {isPasswordError && (
-        <Styled.ErrorPasswordContainer className="errorPassword">
+        <Styled.ErrorPasswordContainer className='errorPassword'>
           {passwordError.map((text, index) => {
             const isError = text === error;
             const isSuccess = successPasswordMessages.includes(text);
@@ -211,7 +206,13 @@ export const Input= ({
               <Styled.ErrorPassword $isError={isError} $isSuccess={isSuccess} key={index}>
                 <IconCommon
                   icon={successIcon}
-                  background={isError ? theme.COLORS.error : isSuccess ? theme.COLORS.primary : theme.rgba(theme.COLORS.black, 0.8)}
+                  background={
+                    isError
+                      ? theme.COLORS.error
+                      : isSuccess
+                      ? theme.COLORS.primary
+                      : theme.rgba(theme.COLORS.black, 0.8)
+                  }
                 />
 
                 {text}

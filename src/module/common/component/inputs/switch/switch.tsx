@@ -1,6 +1,5 @@
 import { getIn, useFormikContext } from 'formik';
 
-
 import * as Styled from './switch.styled.ts';
 
 export interface ISwitch {
@@ -35,7 +34,7 @@ export const Switch = ({ name, label, noFormikValue }: ISwitch) => {
 
   return (
     <Styled.CheckBoxWrapper>
-      <Styled.CheckBox id={name} type="checkbox" checked={value} onChange={onChange} />
+      <Styled.CheckBox id={name} type='checkbox' checked={value} onChange={onChange} />
       <Styled.CheckBoxLabel htmlFor={name} />
       {label && <Styled.Label>{label}</Styled.Label>}
     </Styled.CheckBoxWrapper>

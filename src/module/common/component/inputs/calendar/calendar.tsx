@@ -32,8 +32,8 @@ export interface ICalendarProps extends IInputDefault {
 }
 
 const CalendarFormatUtil = <T extends DateSelection>(
-    data: T,
-    mode: DaySelectionMode | undefined
+  data: T,
+  mode: DaySelectionMode | undefined
 ): string => {
   let filterDate = '';
 
@@ -56,19 +56,19 @@ const CalendarFormatUtil = <T extends DateSelection>(
 };
 
 export const Calendar = ({
-                           name,
-                           label,
-                           width,
-                           placeholder,
-                           height,
-                           noFormikValue,
-                           readOnly,
-                           mode,
-                           isSelectYearOrMounts,
-                           disabledDay,
-                           visibleOfMonths,
-                           ...props
-                         }: ICalendarProps) => {
+  name,
+  label,
+  width,
+  placeholder,
+  height,
+  noFormikValue,
+  readOnly,
+  mode,
+  isSelectYearOrMounts,
+  disabledDay,
+  visibleOfMonths,
+  ...props
+}: ICalendarProps) => {
   const { setFieldValue, value, error, touched } = (() => {
     if (noFormikValue) {
       return {
@@ -108,10 +108,10 @@ export const Calendar = ({
   };
 
   const selected: DateSelection =
-      (mode === 'range' && (value as DateRange)) ||
-      (mode === 'multiple' && (value as Date[])) ||
-      (mode === 'single' && (value as Date)) ||
-      undefined;
+    (mode === 'range' && (value as DateRange)) ||
+    (mode === 'multiple' && (value as Date[])) ||
+    (mode === 'single' && (value as Date)) ||
+    undefined;
 
   const isMobile = useIsMobile();
   const isTabletS = useIsMobile(MEDIA.tablet);
@@ -122,69 +122,69 @@ export const Calendar = ({
     }
   });
   const CalendarCommon = () => (
-      <Styled.Calendar
-          mode={mode as any}
-          onSelect={onSelect}
-          selected={selected as DateSelection}
-          numberOfMonths={isTabletS ? 1 : isMobile && visibleOfMonths === 1 ? 2 : visibleOfMonths ?? 2}
-          {...(disabledDay ? { disabled: { after: disabledDay } } : {})}
-          weekStartsOn={1}
-          {...(isSelectYearOrMounts
-              ? {
-                captionLayout: 'dropdown-buttons',
-                fromYear: isSelectYearOrMounts.fromYear ?? 2022,
-                toYear: isSelectYearOrMounts.toYear ?? new Date().getFullYear()
-              }
-              : { captionLayout: 'dropdown' })}
-      />
+    <Styled.Calendar
+      mode={mode as any}
+      onSelect={onSelect}
+      selected={selected as DateSelection}
+      numberOfMonths={isTabletS ? 1 : isMobile && visibleOfMonths === 1 ? 2 : visibleOfMonths ?? 2}
+      {...(disabledDay ? { disabled: { after: disabledDay } } : {})}
+      weekStartsOn={1}
+      {...(isSelectYearOrMounts
+        ? {
+            captionLayout: 'dropdown-buttons',
+            fromYear: isSelectYearOrMounts.fromYear ?? 2022,
+            toYear: isSelectYearOrMounts.toYear ?? new Date().getFullYear()
+          }
+        : { captionLayout: 'dropdown' })}
+    />
   );
 
   return (
-      <Styled.Wrapper
-          ref={ref as RefObject<HTMLDivElement>}
-          width={width}
-          {...props}
-          className='calendarContainer'
+    <Styled.Wrapper
+      ref={ref as RefObject<HTMLDivElement>}
+      width={width}
+      {...props}
+      className='calendarContainer'
+    >
+      <Input
+        noFormikValue={{
+          value: CalendarFormatUtil(selected, mode),
+          setFieldValue: functionStub,
+          error,
+          touched
+        }}
+        name={name}
+        label={label}
+        placeholder={placeholder}
+        width='100%'
+        height={height}
+        onClick={handleButtonClick.bind(this, !isCalendarOpened)}
+        startIcon={{ icon: calendarIcon, background: '#989AA0' }}
+        {...(value && {
+          endIcon: {
+            icon: closeIcon,
+            height: '0.625rem',
+            onClick: () => {
+              onSelect(undefined);
+            },
+            cursor: 'pointer'
+          }
+        })}
+        isDontChange
+        readOnly={readOnly}
+      />
+
+      {isCalendarOpened && !isMobile && <CalendarCommon />}
+
+      <Styled.PopupLayoutStyle
+        height='50%'
+        contentPosition='bottom'
+        slidePosition='bottom'
+        onClose={() => handleButtonClick(false)}
+        open={isCalendarOpened && isMobile}
       >
-        <Input
-            noFormikValue={{
-              value: CalendarFormatUtil(selected, mode),
-              setFieldValue: functionStub,
-              error,
-              touched
-            }}
-            name={name}
-            label={label}
-            placeholder={placeholder}
-            width='100%'
-            height={height}
-            onClick={handleButtonClick.bind(this, !isCalendarOpened)}
-            startIcon={{ icon: calendarIcon, background: '#989AA0' }}
-            {...(value && {
-              endIcon: {
-                icon: closeIcon,
-                height: '0.625rem',
-                onClick: () => {
-                  onSelect(undefined);
-                },
-                cursor: 'pointer'
-              }
-            })}
-            isDontChange
-            readOnly={readOnly}
-        />
-
-        {isCalendarOpened && !isMobile && <CalendarCommon />}
-
-        <Styled.PopupLayoutStyle
-            height='50%'
-            contentPosition='bottom'
-            slidePosition='bottom'
-            onClose={() => handleButtonClick(false)}
-            open={isCalendarOpened && isMobile}
-        >
-          <CalendarCommon />
-        </Styled.PopupLayoutStyle>
-      </Styled.Wrapper>
+        <CalendarCommon />
+      </Styled.PopupLayoutStyle>
+    </Styled.Wrapper>
   );
 };

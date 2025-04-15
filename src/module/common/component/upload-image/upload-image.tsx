@@ -1,13 +1,13 @@
 import { getIn, useFormikContext } from 'formik';
 import { ChangeEvent, DragEvent, useCallback, useRef, useState } from 'react';
+import { useTheme } from 'styled-components';
 
 import deleteIcon from '@/assets/icons/delete-file-icon.svg';
 import uploadIcon from '@/assets/icons/fileupload.svg';
-import { TagCommon, IconCommon, TextCommon } from '@/module/common/styles';
+import { IconCommon, TagCommon, TextCommon } from '@/module/common/styles';
 
 import { fileService } from '../../services';
 import * as Styled from './upload-image.styled.ts';
-import { useTheme } from 'styled-components';
 
 export interface IAvatarSetup {
   label?: string;
@@ -32,7 +32,6 @@ export const UploadImage = ({ name, noFormikValue, readOnly }: IAvatarSetup) => 
   })();
 
   const { COLORS } = useTheme();
-
 
   const ref = useRef<HTMLInputElement>(null);
   const clickInput = () => {

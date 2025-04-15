@@ -1,10 +1,9 @@
 import { AxiosError } from 'axios';
 import i18next from 'i18next';
 
+import { toast } from '@/module/common/component';
 import { IMessage } from '@/module/common/types';
 import { IAuthError } from '@/types';
-import { toast } from '@/module/common/component';
-
 
 export const onError = (_err: AxiosError<IAuthError>) => {
   const err = _err.response?.data as IAuthError;
@@ -20,7 +19,6 @@ export const onError = (_err: AxiosError<IAuthError>) => {
   toast.error({ title: localizedMessage });
 };
 
-
 export const onSuccess = (data: IMessage) => {
   const currentLang = i18next.language;
 
@@ -34,4 +32,3 @@ export const onSuccess = (data: IMessage) => {
 
   toast.success({ title: localizedMessage });
 };
-

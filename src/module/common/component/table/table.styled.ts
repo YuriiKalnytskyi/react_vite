@@ -12,30 +12,29 @@ const layoutCss = css`
 `;
 
 const cellControlledSizes = css`
-    padding: ${FONTS.SIZES.xxsm} ${FONTS.SIZES.l};
+  padding: ${FONTS.SIZES.xxsm} ${FONTS.SIZES.l};
 
-    &.title {
-        width: 13rem ;
-        min-width:  13rem;
-    }
+  &.title {
+    width: 13rem;
+    min-width: 13rem;
+  }
 
-    &.id {
-        width: 5rem ;
-        min-width:  5rem;
+  &.id {
+    width: 5rem;
+    min-width: 5rem;
+  }
 
-    } 
-    
-    &.checkbox {
-        width: 3.3rem ;
-    }
+  &.checkbox {
+    width: 3.3rem;
+  }
 `;
 export const Content = styled.section`
-    position: relative;
-`
+  position: relative;
+`;
 
 // ================= table components START ====================//
 export const Container = styled.div`
-  box-shadow: 0 0 0.625rem ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.2)};
+  box-shadow: 0 0 0.625rem ${({ theme }) => theme.rgba(theme.COLORS.black, 0.2)};
   width: 100%;
   min-height: fit-content;
   &.scroll {
@@ -53,7 +52,6 @@ export const Container = styled.div`
 
       & > thead > tr > th,
       & > tr > td {
-
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -71,41 +69,41 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-    overflow: hidden;
-    box-shadow: 0 0 0.625rem ${({theme}) => theme.rgba(theme.COLORS.black, 0.2)};
-    min-height: fit-content;
+  overflow: hidden;
+  box-shadow: 0 0 0.625rem ${({ theme }) => theme.rgba(theme.COLORS.black, 0.2)};
+  min-height: fit-content;
 `;
 export const Table = styled.table`
-    width: 100%;
-    min-width: 100%;
-    position: relative;
+  width: 100%;
+  min-width: 100%;
+  position: relative;
 
-    &.full {
-        width: 81.25rem;
-    }
+  &.full {
+    width: 81.25rem;
+  }
 
-    &.scroll {
-        width: 81.25rem;
-    }
+  &.scroll {
+    width: 81.25rem;
+  }
 
-    &.pointer {
-        tbody tr * {
-            cursor: pointer !important;
-        }
+  &.pointer {
+    tbody tr * {
+      cursor: pointer !important;
     }
-    
-    border-collapse: collapse;
+  }
 
-    @media screen and (max-width: ${MEDIA.tablet_s}) {
-        width: 81.25rem;
-    }
+  border-collapse: collapse;
+
+  @media screen and (max-width: ${MEDIA.tablet_s}) {
+    width: 81.25rem;
+  }
 `;
 
 export const Head = styled.thead`
-    ${layoutCss};
-    position: sticky;
-    top: 0;
-    z-index: 1;
+  ${layoutCss};
+  position: sticky;
+  top: 0;
+  z-index: 1;
 `;
 
 export const Body = styled.tbody`
@@ -114,7 +112,7 @@ export const Body = styled.tbody`
   ${layoutCss};
 
   & > tr {
-    border-bottom: 1px solid ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.1)};
+    border-bottom: 1px solid ${({ theme }) => theme.rgba(theme.COLORS.black, 0.1)};
   }
 
   & > tr:hover * {
@@ -123,48 +121,48 @@ export const Body = styled.tbody`
 `;
 
 export const HeadRow = styled.th`
-    ${Fonts};
-    height: 3rem;
-    letter-spacing: 0.0175rem;
-    text-transform: uppercase;
-    color: ${({theme}) => theme.COLORS.white};
-    background-color: ${({theme}) => theme.COLORS.primary};
+  ${Fonts};
+  height: 3rem;
+  letter-spacing: 0.0175rem;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.COLORS.white};
+  background-color: ${({ theme }) => theme.COLORS.primary};
 
-    position: relative;
+  position: relative;
 
-    &:last-child {
-        border-right: none;
+  &:last-child {
+    border-right: none;
+  }
+
+  ${cellControlledSizes};
+
+  & > .order,
+  & > .resizer {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+
+    transform: translate(-50%, -50%);
+
+    &:hover {
+      background: ${({ theme }) => theme.rgba(theme.COLORS.black, 0.5)};
     }
+  }
 
-    ${cellControlledSizes};
-
-    & > .order ,
-    & > .resizer {
-        position: absolute;
-        top: 50%;
-        right: 1rem;
-
-        transform: translate(-50%, -50%);
-
-        &:hover {
-            background: ${({theme}) => theme.rgba(theme.COLORS.black, 0.5)};
-        }
-    },
-
-    & > .order {
-        right: 1rem;
-        &:hover {
-            background: ${({theme}) => theme.rgba(theme.COLORS.black, 0.5)};
-        }
+  ,
+  & > .order {
+    right: 1rem;
+    &:hover {
+      background: ${({ theme }) => theme.rgba(theme.COLORS.black, 0.5)};
     }
+  }
 
-    & > .resizer {
-        right: 0;
-        transform: translate(0, -50%);
+  & > .resizer {
+    right: 0;
+    transform: translate(0, -50%);
 
-        cursor: e-resize;
-
-    }
+    cursor: e-resize;
+  }
 `;
 
 export const Row = styled.tr`
@@ -178,8 +176,8 @@ export const Row = styled.tr`
   }
 
   &:hover {
-    background: ${ ({theme})=>  theme.rgba(theme.COLORS.primary, 0.2)};
-    box-shadow: 0 2px 8px ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.1)};
+    background: ${({ theme }) => theme.rgba(theme.COLORS.primary, 0.2)};
+    box-shadow: 0 2px 8px ${({ theme }) => theme.rgba(theme.COLORS.black, 0.1)};
   }
 `;
 
@@ -196,7 +194,7 @@ export const Data = styled.td`
     left: 0;
     top: -9999px;
     bottom: -9999px;
-    background-color: ${ ({theme})=>  theme.rgba(theme.COLORS.primary, 0.1)};
+    background-color: ${({ theme }) => theme.rgba(theme.COLORS.primary, 0.1)};
     z-index: -1;
   }
 
@@ -211,13 +209,13 @@ const labelPriceCommonStyles = css`
 export const ItemLabel = styled.div<{
   $linesToTruncate: number;
 }>`
-    position: relative;
-    display: -webkit-box; 
-    -webkit-box-orient: vertical; 
-    overflow: hidden; 
-    -webkit-line-clamp: ${({ $linesToTruncate }) => $linesToTruncate};
-    white-space: normal; 
-    ${labelPriceCommonStyles};
+  position: relative;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: ${({ $linesToTruncate }) => $linesToTruncate};
+  white-space: normal;
+  ${labelPriceCommonStyles};
 `;
 
 export const WrapperPagination = styled.div`
@@ -225,47 +223,44 @@ export const WrapperPagination = styled.div`
   margin: 0 auto;
 `;
 
-
 export const Tooltip = styled.div`
-    display: flex;
-    width: 100%;
-    max-height: 14rem;
-    min-height: 4rem;
-    height: fit-content !important;
-    min-width: 10rem;
-    max-width: 10rem;
+  display: flex;
+  width: 100%;
+  max-height: 14rem;
+  min-height: 4rem;
+  height: fit-content !important;
+  min-width: 10rem;
+  max-width: 10rem;
 
-    padding: ${SPACES.xxxxxs} ${SPACES.xs};
-    word-wrap: break-word;
-    word-break: break-all;
+  padding: ${SPACES.xxxxxs} ${SPACES.xs};
+  word-wrap: break-word;
+  word-break: break-all;
 
-    ${labelPriceCommonStyles};
+  ${labelPriceCommonStyles};
 
+  background: ${({ theme }) => theme.COLORS.white};
+  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.rgba(theme.COLORS.black, 0.4)};
+  box-shadow: 0 0 4px ${({ theme }) => theme.rgba(theme.COLORS.black, 0.8)};
 
-    background: ${ ({theme})=>  theme.COLORS.white};
-    border-radius: 8px;
-    border: 1px solid ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.4)};
-    box-shadow: 0 0 4px ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.8)};
+  position: absolute;
+  z-index: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
 
-    position: absolute;
-    z-index: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-    overscroll-behavior-y: none;
+  &::-webkit-scrollbar {
+    width: 0.3rem;
+  }
 
-    &::-webkit-scrollbar {
-        width: 0.3rem;
-    }
+  &::-webkit-scrollbar-track {
+    border-radius: 0.25rem;
+    background-color: ${({ theme }) => theme.rgba(theme.COLORS.primary, 0.2)};
+    margin-block: 0.2rem;
+  }
 
-    &::-webkit-scrollbar-track {
-        border-radius: 0.25rem;
-        background-color: ${ ({theme})=>  theme.rgba(theme.COLORS.primary, 0.2)};
-        margin-block: .2rem;
-
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: ${ ({theme})=>  theme.COLORS.primary};
-        border-radius: 0.25rem;
-    }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.COLORS.primary};
+    border-radius: 0.25rem;
+  }
 `;

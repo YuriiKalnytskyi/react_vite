@@ -6,20 +6,20 @@ import { MEDIA, SPACES } from '@/theme';
 export const Container = styled.div`
   width: 26.563rem;
   height: 100%;
-  background-color: ${ ({theme})=>  theme.COLORS.white};
+  background-color: ${({ theme }) => theme.COLORS.white};
 
   overflow-y: auto;
 
   padding: ${SPACES.xxxxxxls} ${SPACES.xxxxl};
 
-    &::-webkit-scrollbar-track {
-        background-color: ${ ({theme})=>  theme.COLORS.primary};
-    }
+  &::-webkit-scrollbar-track {
+    background-color: ${({ theme }) => theme.COLORS.primary};
+  }
 
-    &::-webkit-scrollbar-thumb {
-        background-color: ${ ({theme})=>  theme.rgba(theme.COLORS.primary, 0.8)};
-        border-radius: 0.25rem;
-    }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.rgba(theme.COLORS.primary, 0.8)};
+    border-radius: 0.25rem;
+  }
 
   @media screen and (max-width: ${MEDIA.tablet}) {
     width: 22rem;

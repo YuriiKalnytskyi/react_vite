@@ -1,5 +1,6 @@
 import { toast as Toast, ToastContainer, ToastOptions, TypeOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import * as Styled from './toast.styled.ts';
 
 interface IToast {
@@ -16,20 +17,17 @@ const createToastComponent = ({ title, text }: IToast) => (
   </Styled.Container>
 );
 
-
 const showToast = (type: TToast, { title, text, ...props }: IToast & ToastOptions) => {
-
   const ToastComponent = createToastComponent({ title, text });
 
   Toast[type](ToastComponent, {
     autoClose: 5000,
     closeButton: true,
     draggablePercent: 60,
-    draggable: "mouse",
+    draggable: 'mouse',
     ...props
   });
 };
-
 
 export const toast = {
   success: (props: IToast) => showToast('success', props),
@@ -62,7 +60,6 @@ export const toast = {
 };
 export const ToastSetting = ({ stacked }: { stacked?: boolean }) => (
   <Styled.StyledToastContainer>
-    <ToastContainer stacked={stacked} position="bottom-right" />
+    <ToastContainer stacked={stacked} position='bottom-right' />
   </Styled.StyledToastContainer>
 );
-

@@ -6,145 +6,145 @@ import { IMargin } from '@/module/common/types';
 import { FONTS, INDEX, MEDIA } from '@/theme';
 
 const dayPicker = css`
-    .rdp-multiple_months {
-        margin-top: 0;
-        border-color: ${({ theme }) => theme.COLORS.primary};
-    }
+  .rdp-multiple_months {
+    margin-top: 0;
+    border-color: ${({ theme }) => theme.COLORS.primary};
+  }
 
-    .endIcon {
-        background: #989aa0;
-    }
+  .endIcon {
+    background: #989aa0;
+  }
 
-    .rdp-button_reset.rdp-button.rdp-day.rdp-day_selected.rdp-day_range_end.rdp-day_range_start {
-        border-radius: 0;
-    }
+  .rdp-button_reset.rdp-button.rdp-day.rdp-day_selected.rdp-day_range_end.rdp-day_range_start {
+    border-radius: 0;
+  }
 
-    .rdp-caption_label {
-        color: #2c2c2c;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 20px;
-        font-family: ${FONTS.FAMILIES.roboto};
-    }
+  .rdp-caption_label {
+    color: #2c2c2c;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    font-family: ${FONTS.FAMILIES.roboto};
+  }
 
-    .rdp-nav_icon {
-        color: #98a2b3;
-    }
+  .rdp-nav_icon {
+    color: #98a2b3;
+  }
 
-    .rdp-nav_icon:hover {
-        color: #4d5560;
-    }
+  .rdp-nav_icon:hover {
+    color: #4d5560;
+  }
 
-    .rdp-day_selected,
-    .rdp-day_selected:focus-visible,
-    .rdp-day_selected:hover {
-        background-color: ${({ theme }) => theme.rgba(theme.COLORS.black, 0.2)};
-        border-radius: 0;
-        color: #2c2c2c;
-    }
+  .rdp-day_selected,
+  .rdp-day_selected:focus-visible,
+  .rdp-day_selected:hover {
+    background-color: ${({ theme }) => theme.rgba(theme.COLORS.black, 0.2)};
+    border-radius: 0;
+    color: #2c2c2c;
+  }
 
-    .rdp-day {
-        font-weight: 400;
-        font-size: 0.875rem;
-    }
+  .rdp-day {
+    font-weight: 400;
+    font-size: 0.875rem;
+  }
 
-    .rdp-day_today {
-        font-weight: 500;
-    }
+  .rdp-day_today {
+    font-weight: 500;
+  }
 
-    .rdp-day_today:not(.rdp-day_outside, .rdp-day_range_middle) {
-        color: ${({ theme }) => theme.COLORS.white};
-        background-color: ${({ theme }) => theme.COLORS.black};
-        border-radius: 0.25rem;
-    }
+  .rdp-day_today:not(.rdp-day_outside, .rdp-day_range_middle) {
+    color: ${({ theme }) => theme.COLORS.white};
+    background-color: ${({ theme }) => theme.COLORS.black};
+    border-radius: 0.25rem;
+  }
 
-    .rdp-day_range_start,
-    .rdp-day_range_end {
-        color: ${({ theme }) => theme.COLORS.white};
-        background-color: ${({ theme }) => theme.COLORS.primary};
-    }
+  .rdp-day_range_start,
+  .rdp-day_range_end {
+    color: ${({ theme }) => theme.COLORS.white};
+    background-color: ${({ theme }) => theme.COLORS.primary};
+  }
 
-    .rdp-day_range_start {
-        border-radius: 0.5rem 0.5rem 0.5rem;
-    }
+  .rdp-day_range_start {
+    border-radius: 0.5rem 0.5rem 0.5rem;
+  }
 
-    .rdp-day_range_end {
-        border-radius: 0.5rem 0.5rem 0.5rem;
-    }
+  .rdp-day_range_end {
+    border-radius: 0.5rem 0.5rem 0.5rem;
+  }
 
-    .rdp-day:hover {
-        background-color: rgba(0, 0, 0, 0.1);
-    }
+  .rdp-day:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 
-    .rdp-button_reset.rdp-button.rdp-nav_button.rdp-nav_button_previous:hover,
-    .rdp-button_reset.rdp-button.rdp-nav_button.rdp-nav_button_next:hover {
-        background: none;
-    }
+  .rdp-button_reset.rdp-button.rdp-nav_button.rdp-nav_button_previous:hover,
+  .rdp-button_reset.rdp-button.rdp-nav_button.rdp-nav_button_next:hover {
+    background: none;
+  }
 
-    .rdp-month {
-        margin: 0;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 140%;
-    }
+  .rdp-month {
+    margin: 0;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+  }
 
-    .rdp-month:first-child {
-        padding-right: 1rem;
-    }
+  .rdp-month:first-child {
+    padding-right: 1rem;
+  }
 
-    .rdp-month:last-child {
-        padding-left: 1rem;
-    }
+  .rdp-month:last-child {
+    padding-left: 1rem;
+  }
 
-    .rdp-table {
-        width: 100%;
-        max-width: none;
-    }
+  .rdp-table {
+    width: 100%;
+    max-width: none;
+  }
 
-    .rdp-head_cell {
-        color: ${({ theme }) => theme.COLORS.black};
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 140%;
-        text-transform: none;
-    }
+  .rdp-head_cell {
+    color: ${({ theme }) => theme.COLORS.black};
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    text-transform: none;
+  }
 
-    .rdp-head_cell:last-child,
-    .rdp-head_cell:nth-last-child(2) {
-        color: ${({ theme }) => theme.COLORS.black};
-    }
+  .rdp-head_cell:last-child,
+  .rdp-head_cell:nth-last-child(2) {
+    color: ${({ theme }) => theme.COLORS.black};
+  }
 
-    .rdp-cell {
-        color: #2c2c2c;
-        font-size: 0.875rem;
-    }
+  .rdp-cell {
+    color: #2c2c2c;
+    font-size: 0.875rem;
+  }
 
-    .rdp-button:not([disabled]) {
-        /*height: 1.5rem;*/
-        /*width: 1.5rem;*/
-        /*border-radius: 0.125rem;*/
-    }
+  .rdp-button:not([disabled]) {
+    /*height: 1.5rem;*/
+    /*width: 1.5rem;*/
+    /*border-radius: 0.125rem;*/
+  }
 
-    .rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
-        color: ${({ theme }) => theme.COLORS.white};
-        background-color: ${({ theme }) => theme.COLORS.black};
-        border-radius: 0.25rem;
-    }
+  .rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
+    color: ${({ theme }) => theme.COLORS.white};
+    background-color: ${({ theme }) => theme.COLORS.black};
+    border-radius: 0.25rem;
+  }
 
-    .rdp {
-        margin: 0 1rem 0 0 !important;
-    }
+  .rdp {
+    margin: 0 1rem 0 0 !important;
+  }
 `;
 
 export const Wrapper = styled.div<IMargin & { width?: string }>`
-    position: relative;
+  position: relative;
 
-    width: ${({ width }) => width ?? '100%'};
+  width: ${({ width }) => width ?? '100%'};
 
-    ${dayPicker};
+  ${dayPicker};
 `;
 
 export const Calendar = styled(DayPicker)`

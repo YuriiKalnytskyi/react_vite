@@ -31,7 +31,7 @@ export interface IStartIcon extends IIcon {
 
 export interface IButtonProps extends IButtonBasicProps {
   disabled?: boolean;
-  variant?: 'primary' ;
+  variant?: 'primary';
   pads?: string;
   startIcon?: IStartIcon;
   endIcon?: IStartIcon;
@@ -40,4 +40,3 @@ export interface IButtonProps extends IButtonBasicProps {
 }
 
 export type TNavLink = LinkProps & IButtonProps;
-

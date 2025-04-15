@@ -1,5 +1,6 @@
-import { IMargin } from './styles.type';
 import { ReactNode } from 'react';
+
+import { IMargin } from './styles.type';
 
 export interface IInputDefault {
   name: string;
@@ -7,9 +8,9 @@ export interface IInputDefault {
     | string
     | ReactNode
     | {
-    text: string | ReactNode;
-    required?: boolean;
-  };
+        text: string | ReactNode;
+        required?: boolean;
+      };
   placeholder?: string;
 }
 
@@ -19,7 +20,6 @@ export interface IInputPropsStyles {
   gapFromLabel?: string;
   placeholderColor?: string;
 }
-
 
 export interface IInputTextareaProps extends IMargin, IInputDefault {
   rows: number;
@@ -32,7 +32,3 @@ export interface IInputTextareaProps extends IMargin, IInputDefault {
   value?: string;
   onChange?: (value: any) => void;
 }
-
-
-
-

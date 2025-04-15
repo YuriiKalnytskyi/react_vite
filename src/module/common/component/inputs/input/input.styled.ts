@@ -10,89 +10,91 @@ export interface IWProps extends IMargin {
 }
 
 export const Wrapper = styled.div<IWProps>`
-    position: relative;
-    width: ${({width}) => width ?? '100%'};
-    opacity: ${({readOnly}) => (readOnly ? '0.4' : '1')};
+  position: relative;
+  width: ${({ width }) => width ?? '100%'};
+  opacity: ${({ readOnly }) => (readOnly ? '0.4' : '1')};
 
-    ${Margin};
+  ${Margin};
 
-    & .startIcon,
-    & .endIcon,
-    & .passwordIcon {
-        position: absolute;
-        transform: translate(0%, -50%);
-        transition: transform 0.5s ease;
-    }
+  & .startIcon,
+  & .endIcon,
+  & .passwordIcon {
+    position: absolute;
+    transform: translate(0%, -50%);
+    transition: transform 0.5s ease;
+  }
 
-    & .startIcon {
-        left: ${SPACES.l};
-    }
+  & .startIcon {
+    left: ${SPACES.l};
+  }
 
-    & .passwordIcon,
-    & .endIcon {
-        right: ${SPACES.xs};
-    }
+  & .passwordIcon,
+  & .endIcon {
+    right: ${SPACES.xs};
+  }
 
-    & .startIcon.rotate,
-    & .endIcon.rotate {
-        transform: translate(0%, -50%) rotate(180deg) !important;
-    }
+  & .startIcon.rotate,
+  & .endIcon.rotate {
+    transform: translate(0%, -50%) rotate(180deg) !important;
+  }
 
-    & .startIcon.rotate45,
-    & .endIcon.rotate45 {
-        transform: translate(0%, -50%) rotate(225deg) !important;
-    }
+  & .startIcon.rotate45,
+  & .endIcon.rotate45 {
+    transform: translate(0%, -50%) rotate(225deg) !important;
+  }
 `;
 
 export const Label = styled.label<{ $required?: boolean; $isError: boolean }>`
-    position: relative;
-    display: block;
-    ${Fonts};
-    white-space: nowrap;
+  position: relative;
+  display: block;
+  ${Fonts};
+  white-space: nowrap;
 
-    text-transform: capitalize;
+  text-transform: capitalize;
 
-    color: ${({ $isError, theme }) => ($isError ? theme.COLORS.error : theme.COLORS.black)};
-    margin-bottom: ${SPACES.xxxs};
+  color: ${({ $isError, theme }) => ($isError ? theme.COLORS.error : theme.COLORS.black)};
+  margin-bottom: ${SPACES.xxxs};
 
-    ${({ $required }) =>
-            $required &&
-            css`
-                &::after {
-                    content: '*';
-                    right: 0;
-                    top: 0;
-                }
-            `}
+  ${({ $required }) =>
+    $required &&
+    css`
+      &::after {
+        content: '*';
+        right: 0;
+        top: 0;
+      }
+    `}
 `;
 
-export const commonStyles = css<{ $isError?: boolean, readOnly?: boolean }>`
-    background: ${({ readOnly, theme }) => readOnly && theme.COLORS.white};
-    border: 1px solid ${({ $isError, theme }) => ($isError ? theme.COLORS.error : theme.rgba(theme.COLORS.black, 0.4))};
-    border-radius: 10px;
+export const commonStyles = css<{ $isError?: boolean; readOnly?: boolean }>`
+  background: ${({ readOnly, theme }) => readOnly && theme.COLORS.white};
+  border: 1px solid
+    ${({ $isError, theme }) =>
+      $isError ? theme.COLORS.error : theme.rgba(theme.COLORS.black, 0.4)};
+  border-radius: 10px;
 
-    font-family: ${FONTS.FAMILIES.inter};
-    font-size: ${FONTS.SIZES.l};
-    font-weight: ${FONTS.WEIGHTS.normal};
+  font-family: ${FONTS.FAMILIES.inter};
+  font-size: ${FONTS.SIZES.l};
+  font-weight: ${FONTS.WEIGHTS.normal};
 
-    cursor: ${({ readOnly }) => (readOnly ? 'initial' : 'pointer')};
-    pointer-events: ${({ readOnly }) => (readOnly ? 'none' : 'initial')};
+  cursor: ${({ readOnly }) => (readOnly ? 'initial' : 'pointer')};
+  pointer-events: ${({ readOnly }) => (readOnly ? 'none' : 'initial')};
 
-    caret-color: ${ ({theme})=>  theme.COLORS.primary};
+  caret-color: ${({ theme }) => theme.COLORS.primary};
 
-    &:not(:focus-within) {
-        cursor: pointer;
-    }
+  &:not(:focus-within) {
+    cursor: pointer;
+  }
 
-    &:focus,
-    &:focus-within {
-        outline: none;
-        border: 1px solid ${ ({theme})=>  theme.COLORS.primary} !important;
-    }
+  &:focus,
+  &:focus-within {
+    outline: none;
+    border: 1px solid ${({ theme }) => theme.COLORS.primary} !important;
+  }
 
-    &::placeholder {
-        color: ${ ({theme})=>  theme.rgba(theme.COLORS.black, 0.4)};
-    }
+  &::placeholder {
+    color: ${({ theme }) => theme.rgba(theme.COLORS.black, 0.4)};
+  }
 `;
 
 export const Input = styled.input<{
@@ -101,74 +103,78 @@ export const Input = styled.input<{
   $padding?: string;
   readOnly?: boolean;
 }>`
-    ${commonStyles};
-    width: 100% !important;
-    height: ${({ height }) => height ?? '3rem'};
-    padding: ${({ $padding }) => $padding ?? `${SPACES.xxl} ${SPACES.xxxxl}`};
+  ${commonStyles};
+  width: 100% !important;
+  height: ${({ height }) => height ?? '3rem'};
+  padding: ${({ $padding }) => $padding ?? `${SPACES.xxl} ${SPACES.xxxxl}`};
 
-    &[type='number'] {
-        appearance: none;
-        -moz-appearance: textfield;
-    }
+  &[type='number'] {
+    appearance: none;
+    -moz-appearance: textfield;
+  }
 
-    &[type='number']::-webkit-inner-spin-button,
-    &[type='number']::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-        display: none;
-    }
+  &[type='number']::-webkit-inner-spin-button,
+  &[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    display: none;
+  }
 `;
 
 export const VisibilityIcon = styled(IconCommon)`
-    height: 1.5rem;
-    aspect-ratio: 1/1;
-    color: ${ ({theme})=>  theme.COLORS.black};
-    cursor: pointer;
-    position: absolute;
-    right: 2rem;
+  height: 1.5rem;
+  aspect-ratio: 1/1;
+  color: ${({ theme }) => theme.COLORS.black};
+  cursor: pointer;
+  position: absolute;
+  right: 2rem;
 `;
 
 export const ErrorPasswordContainer = styled.div`
-    width: 100%;
-    left: ${SPACES.xxxxxs};
-    bottom: -${SPACES.xxxs};
-    gap: 10px;
-    display: flex;
+  width: 100%;
+  left: ${SPACES.xxxxxs};
+  bottom: -${SPACES.xxxs};
+  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+
+  @media screen and (max-width: ${MEDIA.mobile_l}) {
     flex-wrap: wrap;
     position: relative;
-
-    @media screen and (max-width: ${MEDIA.mobile_l}) {
-        flex-wrap: wrap;
-        position: relative;
-    }
-    @media screen and (max-width: ${MEDIA.tablet}) {
-        flex-wrap: wrap;
-        position: relative;
-    }
+  }
+  @media screen and (max-width: ${MEDIA.tablet}) {
+    flex-wrap: wrap;
+    position: relative;
+  }
 `;
 
 export const Error = styled.div`
-    position: absolute;
-    left: ${SPACES.xxxxxs};
-    font-size: ${FONTS.SIZES.s};
-    color: ${ ({theme})=>  theme.COLORS.error};
+  position: absolute;
+  left: ${SPACES.xxxxxs};
+  font-size: ${FONTS.SIZES.s};
+  color: ${({ theme }) => theme.COLORS.error};
 
-    &.textArea {
-        bottom: -${SPACES.m};
-    }
+  &.textArea {
+    bottom: -${SPACES.m};
+  }
 
-    &.maxLength {
-        width: fit-content;
-        right: 0 ;
-        left: auto;
-        color: ${ ({theme})=>  theme.COLORS.black};
-    }
+  &.maxLength {
+    width: fit-content;
+    right: 0;
+    left: auto;
+    color: ${({ theme }) => theme.COLORS.black};
+  }
 `;
 
 export const ErrorPassword = styled.div<{ $isError: boolean; $isSuccess: boolean }>`
-    ${Fonts};
-    color: ${({ $isError, $isSuccess, theme }) =>
-            $isError ? theme.COLORS.error : $isSuccess ? theme.COLORS.primary : theme.rgba(theme.COLORS.black, 0.8)};
-    display: flex;
-    gap: 2px;
+  ${Fonts};
+  color: ${({ $isError, $isSuccess, theme }) =>
+    $isError
+      ? theme.COLORS.error
+      : $isSuccess
+      ? theme.COLORS.primary
+      : theme.rgba(theme.COLORS.black, 0.8)};
+  display: flex;
+  gap: 2px;
 `;

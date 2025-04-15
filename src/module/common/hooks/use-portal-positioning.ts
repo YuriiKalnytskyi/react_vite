@@ -1,4 +1,5 @@
-import {  useEffect, useState, Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
+
 import { Portal } from '@/module/common/component';
 
 export const usePortalPositioning = <T extends HTMLElement>(
@@ -6,8 +7,12 @@ export const usePortalPositioning = <T extends HTMLElement>(
   focused: boolean,
   parentScroll?: boolean
 ) => {
-
-  const initValue: { top: number; left: number; width: number, clientHeight: number } = { top: 0, left: 0, width: 0, clientHeight:0 }
+  const initValue: { top: number; left: number; width: number; clientHeight: number } = {
+    top: 0,
+    left: 0,
+    width: 0,
+    clientHeight: 0
+  };
 
   const [setting, setSetting] = useState(initValue);
   const [parentHasScroll, setParentHasScroll] = useState<boolean>(false);
@@ -50,8 +55,7 @@ export const usePortalPositioning = <T extends HTMLElement>(
         if (focused && (parentHasScroll || parentScroll)) {
           rootElement.style.overflowY = 'hidden';
           rootElement.addEventListener('wheel', preventScroll, { passive: false });
-        }
-        else {
+        } else {
           rootElement.style.overflowY = '';
           rootElement.removeEventListener('wheel', preventScroll);
         }
@@ -75,7 +79,7 @@ export const usePortalPositioning = <T extends HTMLElement>(
     };
   }, [ref?.id, focused]);
 
-  const _parentScroll = (parentHasScroll || parentScroll) ?? false
+  const _parentScroll = (parentHasScroll || parentScroll) ?? false;
 
   return {
     setting: _parentScroll ? setting : initValue,
