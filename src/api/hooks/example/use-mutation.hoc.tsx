@@ -1,34 +1,28 @@
-import { AxiosError } from 'axios';
-import { useMutation } from 'react-query';
+import {AxiosError} from 'axios';
+import {useMutation} from '@tanstack/react-query';
 
-import { exampleAuthHttpService, exampleHttpService } from '@/api/services/example';
-import { IAuthError, IPostAuthHttp, IPostHttp } from '@/types';
-import { onError, onSuccess } from '@/module/common/services';
-
+import {exampleAuthHttpService, exampleHttpService} from '@/api/services/example';
+import {IAuthError, IPostAuthHttp, IPostHttp} from '@/types';
+import {onError, onSuccess} from '@/module/common/services';
+import {IMessage} from "@/module/common/types";
 
 export const postHttp = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  return useMutation<any, AxiosError<IAuthError>, IPostHttp>(
-    (data: IPostHttp) => exampleHttpService.post(data),
-    {
-      onSuccess: onSuccess,
-      onError: onError
-    }
-  );
+    return useMutation<unknown, AxiosError<IAuthError>, IPostHttp>({
+        mutationFn: (data: IPostHttp) => exampleHttpService.post(data),
+        onSuccess: (data) => onSuccess(data as IMessage),
+        onError
+    });
 };
 
 export const postAuthHttp = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  return useMutation<any, AxiosError<IAuthError>, IPostAuthHttp>(
-    (data: IPostAuthHttp) => exampleAuthHttpService.post(data),
-    {
-      onSuccess: onSuccess,
-      onError: onError
-    }
-  );
+    return useMutation<unknown, AxiosError<IAuthError>, IPostAuthHttp>({
+        mutationFn: (data: IPostAuthHttp) => exampleAuthHttpService.post(data),
+        onSuccess: (data) => onSuccess(data as IMessage),
+        onError
+    });
 };
 
 export const useExampleMutation = {
-  postHttp,
-  postAuthHttp
+    postHttp,
+    postAuthHttp
 };

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {Form, Formik, getIn} from 'formik';
 import {useState} from 'react';
-import {useQuery, UseQueryResult} from 'react-query';
+import {useQuery, UseQueryResult} from '@tanstack/react-query';
 
 import testIcon from '@/assets/icons/vite.svg';
 import {
@@ -18,7 +18,6 @@ import {
     TextArea, toast
 } from '@/module/common/component';
 import {changeCard} from '@/module/common/hooks';
-import {onError} from '@/module/common/services';
 import {TagCommon, TextCommon} from '@/module/common/styles';
 import {validationSchemaExample} from '@/module/example/validation/shema.ts';
 import {SPACES} from '@/theme';
@@ -99,20 +98,17 @@ export const Example = () => {
             phone: string;
         }[]
     }> = useQuery(
-        ['country'],
-        async () => {
-            const response = await axios.get('https://restcountries.com/v3.1/all?fields=name,flags,cca2,idd');
-            const countries = response.data.map((country: any) => ({
-                name: country.name.common,
-                icon: country.flags?.svg,
-                cca2: country.cca2,
-                phone: country.idd.root + country.idd?.suffixes.join('')
-            }));
-            return {countries};
-        },
         {
-            onError: (err: any) => {
-                onError(err);
+            queryKey: ['country'],
+            queryFn: async () => {
+                const response = await axios.get('https://restcountries.com/v3.1/all?fields=name,flags,cca2,idd');
+                const countries = response.data.map((country: any) => ({
+                    name: country.name.common,
+                    icon: country.flags?.svg,
+                    cca2: country.cca2,
+                    phone: country.idd.root + country.idd?.suffixes.join('')
+                }));
+                return {countries};
             }
         }
     );

@@ -20,16 +20,18 @@ export const onError = (_err: AxiosError<IAuthError>) => {
   toast.error({ title: localizedMessage });
 };
 
-export const onSuccess = ({ message }: IMessage) => {
+
+export const onSuccess = (data: IMessage) => {
   const currentLang = i18next.language;
 
   let localizedMessage: string;
 
-  if (typeof message === 'object') {
-    localizedMessage = message[currentLang] || message['en'];
+  if (typeof data.message === 'object') {
+    localizedMessage = data.message[currentLang] || data.message['en'];
   } else {
-    localizedMessage = message;
+    localizedMessage = data.message;
   }
 
   toast.success({ title: localizedMessage });
 };
+

@@ -1,4 +1,4 @@
-import {useInfiniteQuery, useQuery} from "react-query";
+import {useInfiniteQuery, useQuery} from "@tanstack/react-query";
 import {motion, AnimatePresence} from "framer-motion";
 import styled, {RuleSet} from "styled-components";
 import {ReactNode, useState} from "react";
@@ -31,11 +31,11 @@ type IInfinite = {
     isViewportEnter?: boolean
 }
 
-type IPagination =  {
+type IPagination = {
     type: 'pagination'
 }
 
-type IList<T, P> =  Omit<IListIndex<T>, 'items'> & (IInfinite | IPagination) &  {
+type IList<T, P> = Omit<IListIndex<T>, 'items'> & (IInfinite | IPagination) & {
     request: {
         key: string;
         items_key: ItemsKey<T>;
@@ -44,6 +44,7 @@ type IList<T, P> =  Omit<IListIndex<T>, 'items'> & (IInfinite | IPagination) &  
         limit?: number;
     } & OptionsSortWithRequired<P>;
 }
+
 
 export const List = <T, P>({
                                type,
@@ -54,14 +55,21 @@ export const List = <T, P>({
     const limit = request?.limit ?? 10;
 
     if (type === 'infinite') {
+        interface PageData {
+            items: T[ItemsKey<T>] extends (infer U)[] ? U : T[ItemsKey<T>];
+            count: number;
+            nextPage: number;
+            hasMore: boolean;
+        }
+
         const {
             data,
             fetchNextPage,
             hasNextPage,
             isFetchingNextPage,
-        } = useInfiniteQuery(
-            [request.key, (request?.options_sort ?? {})],
-            async ({pageParam = 1}) => {
+        } = useInfiniteQuery<PageData>({
+            queryKey: [request.key, request?.options_sort ?? {}],
+            queryFn: async ({pageParam = 1}) => {
                 const res = await request.function({
                     page: pageParam,
                     limit,
@@ -78,14 +86,11 @@ export const List = <T, P>({
                     hasMore: ((Array.isArray(posts) ? posts : [])?.length ?? 0) > 0,
                 };
             },
-            {
-                getNextPageParam: (lastPage) =>
-                    lastPage.hasMore ? lastPage.nextPage : undefined,
-            }
-        );
+            getNextPageParam: (lastPage) =>
+                lastPage.hasMore ? lastPage.nextPage : undefined,
+        });
 
         const items = data?.pages.flatMap((page) => page.items) as Prettify<T>[];
-
         const isViewportEnter = type === 'infinite' && 'isViewportEnter' in props ? props.isViewportEnter : false;
 
 
@@ -96,7 +101,7 @@ export const List = <T, P>({
                 {hasNextPage && (
                     <motion.button
                         viewport={{once: true, margin: "0px"}}
-                        onViewportEnter={() => isViewportEnter &&  fetchNextPage()}
+                        onViewportEnter={() => isViewportEnter && fetchNextPage()}
                         onClick={() => fetchNextPage()}
                     >
                         {isFetchingNextPage ? "Loading..." : "Load more"}
@@ -112,16 +117,18 @@ export const List = <T, P>({
         const [page, setPage] = useState(1);
         const dependencies = {...(request?.options_sort ?? {}), page, limit};
 
-        const {data: dataPagination} = useQuery(
-            [request.key, dependencies],
-            async () => {
-                return await request.function({
-                    page,
-                    limit,
-                    ...(request?.options_sort ?? {})
-                } as P);
-            },
+        const {data: dataPagination} = useQuery({
+                queryKey: [request.key, dependencies],
+                queryFn: async () => {
+                    return await request.function({
+                        page,
+                        limit,
+                        ...(request?.options_sort ?? {})
+                    } as P);
+                }
+            }
         );
+
 
         const items = dataPagination?.[request.items_key] as Prettify<T>[];
         const count = Number(dataPagination?.[request.count_key]) ?? 0;
